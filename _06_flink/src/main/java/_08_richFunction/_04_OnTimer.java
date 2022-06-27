@@ -6,7 +6,7 @@ import org.apache.flink.util.Collector;
 
 import java.sql.Timestamp;
 
-public class Example8 {
+public class _04_OnTimer {
     
     
     public static void main(String[] args) throws Exception {
