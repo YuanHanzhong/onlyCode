@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>_09_phoenix_thicks</artifactId>
+    <artifactId>_09_phonix_thick</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
