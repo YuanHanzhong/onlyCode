@@ -14,7 +14,7 @@ import java.util.Properties;
  * Desc: 操作kafka的工具类
  */
 public class MyKafkaUtil {
-    private static  final String KAFKA_SERVER = "hadoop202:9092,hadoop203:9092,hadoop204:9092";
+    private static  final String KAFKA_SERVER = "hadoop102:9092,hadoop103:9092,hadoop104:9092";
     //获取消费者对象的方法
     public static FlinkKafkaConsumer<String> getKafkaConsumer(String topic,String groupId){
         Properties props = new Properties();

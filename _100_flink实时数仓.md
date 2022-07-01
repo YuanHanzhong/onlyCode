@@ -10,6 +10,12 @@
 
 ### ODS![image-20220627233826369](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220627233826369.png)
 
+1.   
+
+
+
+
+
 ### DWD
 
 ![image-20220627233924971](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220627233924971.png)
@@ -176,6 +182,8 @@ canal
 ②抓取业务数据新增变化表，用于制作拉链表。 
 
 ③抓取业务表的新增变化数据，用于制作实时统计 
+
+![image-20220629100130982](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220629100130982.png)
 
 ## logger
 
@@ -407,20 +415,104 @@ redis隔段时间要落盘，而用户维度数据量很大。hbase可以根据r
 
      # 
 
-6.   `GRANT ALL  ON maxwell.* TO 'maxwell'@'%' IDENTIFIED BY '123456';`
+6.   `GRANT ALL  ON maxwell.* TO 'maxwell'@'%' IDENTIFIED BY 'root';`
 
 7.   
 
-## day02
-###      00_内容回顾.mp4
-###      01_封装日志采集服务群起脚本.mp4
-###      02_binlog介绍.mp4
-###      03_binlog配置.mp4
-###      04_业务数据的准备以及生成.mp4
-###      05_maxwell配置以及业务数据采集.mp4
-###      06_DWD层需求分析.mp4
-###      07_实时开发环境搭建.mp4
-###      08_日志数据分流思路分析.mp4
+## day02 2022年6月29日
+
+#### dim 选型
+
+1.   mysql, redis, clickhouse, Hbase
+
+     1.   mysql查询效率较低
+     2.   主要做关联, kv比较合适
+          1.   kv性能更好
+          2.   redis, 对内存压力大
+          3.   Hbase, 性能好, 可以处理大数据
+               1.   根据key查询
+               2.   有缓存
+
+#### hbase
+
+#### 怎么存维度表
+
+	1. 如何识别哪些是维度表
+    	1. 规范表名, 正则匹配
+        	1. 表名需要改业务
+        	2. 有的表有双重属性
+	2. 用表做映射
+    	1. 灵活
+	3. 那么表放在哪里
+    	1. redis
+        	1. 有变化,  不能监控到
+    	2. mysql
+        	1. 可以利用CDC(maxwell), 监控binlog, 一有变化就同步数据
+    	3. 每次启动都把信息读入, 不用每次都查, 维表个数变化时, 有问题
+        	1. 放open, 每5秒查一次, 有些浪费, 因为维表不会经常变化
+        	2. 
+
+
+
+![image-20220629094519466](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220629094519466.png)
+
+
+
+#### 没有用flinkCDC 全部替换maxwell 10点22分
+
+1.   稳定, flink1.1
+     1.   低版本, 同步时锁
+     2.   名字在变, MySQL
+     3.   兼容性问题, 比如要删除security
+2.   影响架构, 和log处理架构就不同了
+3.   失去kafka的优势
+4.   maxwell可以处理某张表同步历史数据, 而flinkCDC只能全部
+
+#### 配置表的作用
+
+1.   过滤
+2.   存储表的配置信息, 方便自动建表
+     1.   要存储的信息
+          1.   ![image-20220629103449352](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220629103449352.png)
+3.   
+
+#### 为什么配置流用广播
+
+1.   因为业务流并行度为4, 每个并行都要
+
+#### 两个流如何工作
+
+`双流join`
+
+1.   ![image-20220629105110114](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220629105110114.png)
+
+
+
+`检查点对齐`
+
+​	exaxtly once, 
+
+​	barry
+
+`状态后端`
+
+
+
+#### `kafka精准一次`
+
+手动提交offset, 默认的是先提交, 后处理. 改成先处理, 后提交. 
+
+flink的API默认精准一次
+
+
+
+
+
+
+
+
+
+
 ###      09_上午内容回顾.mp4
 ###      10_日志数据分流代码思路.mp4
 ###      11_基本环境准备以及检查点设置.mp4
@@ -431,7 +523,38 @@ redis隔段时间要落盘，而用户维度数据量很大。hbase可以根据r
 ###      16_新老访客标记修复代码实现.mp4
 ###      17_日志数据分流.mp4
 ### 
-## day03
+## day03 2022年7月1日
+
+`状态`
+
+
+
+先把框架搭出来, 再磨细节, 做优化
+
+#### 拼接建表sql
+
+#### 执行sql
+
+使用JDBC
+
+![image-20220701110629969](https://pictures-for-typora.oss-cn-beijing.aliyuncs.com/typora_imageimage-20220701110629969.png)
+
+
+
+
+
+放到open, 只创建1次
+
+优化: 使用连接池
+
+
+
+
+
+
+
+
+
 ###      00_内容回顾.mp4
 ###      01_将不同流数据写到kafka主题.mp4
 ###      02_动态分流思路1.mp4

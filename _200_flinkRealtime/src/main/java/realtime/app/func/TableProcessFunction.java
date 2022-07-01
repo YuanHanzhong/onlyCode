@@ -1,4 +1,26 @@
+package realtime.app.func;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.flink.api.common.state.BroadcastState;
+import org.apache.flink.api.common.state.MapStateDescriptor;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.functions.co.BroadcastProcessFunction;
+import org.apache.flink.util.Collector;
+import realtime.bean.TableProcess;
+import realtime.common.GmallConfig;
+import realtime.utils.DruidDSUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ * Author: Felix
+ * Date: 2022/7/1
+ * Desc: 从主流业务数据中过滤出维度数据
+ */
 public class TableProcessFunction extends BroadcastProcessFunction<JSONObject, String, JSONObject> {
     
     private MapStateDescriptor<String, TableProcess> mapStateDescriptor;
