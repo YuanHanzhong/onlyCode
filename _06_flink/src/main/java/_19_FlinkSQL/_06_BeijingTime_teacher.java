@@ -10,7 +10,7 @@ public class _06_BeijingTime_teacher {
         StreamTableEnvironment streamTableEnvironment = StreamTableEnvironment
                                                           .create(
                                                             env,
-                                                            EnvironmentSettings.newInstance().inStreamingMode().build()
+                                                            EnvironmentSettings.newInstance().inStreamingMode().build() // 2022/7/7 11:57 NOTE  这个参数可以不写
                                                           );
         
         streamTableEnvironment

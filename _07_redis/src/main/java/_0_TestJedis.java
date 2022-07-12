@@ -102,6 +102,8 @@ public class _0_TestJedis {
         resource.close();
     }
     
+    
+    
     @Test
     public void testString() {
         Jedis resource = MyJedisPool.getJedisPool().getResource();

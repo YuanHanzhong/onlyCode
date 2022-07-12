@@ -14,6 +14,7 @@ public class _05_SQLLite2_my {
                                                           );
         
         streamTableEnvironment
+          // 2022/7/11 18:13 NOTE TODO 一个executesql只能执行1条语句
           .executeSql(
             "create table clicks (" +
               "`user` STRING, " +
@@ -26,6 +27,18 @@ public class _05_SQLLite2_my {
               "'connector' = 'filesystem'," +
               "'path' = 'D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\file1.csv'," +
               "'format' = 'csv')"
+              //+
+              //"create table clicks2 (" +
+              //"`user` STRING, " +
+              //"`url` STRING, " +
+              //"ts TIMESTAMP(3), " +
+              ////"`ts` BIGINT, "+
+              ////"time_ltz AS TO_TIMESTAMP_LTZ(ts, 3), "+
+              //"WATERMARK FOR ts AS ts - INTERVAL '3' SECONDS) " +
+              //"WITH (" +
+              //"'connector' = 'filesystem'," +
+              //"'path' = 'D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\file1.csv'," +
+              //"'format' = 'csv')"
           );
 
         streamTableEnvironment

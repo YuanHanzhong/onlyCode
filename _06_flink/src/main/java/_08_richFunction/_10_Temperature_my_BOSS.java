@@ -49,6 +49,7 @@ public class _10_Temperature_my_BOSS {
     }
     public static class TempAlert extends KeyedProcessFunction<String, SensorReading_my, String> {
        
+        // 要单独拿出来
         // 保存最新温度, 好做对比
         private ValueState<Double> latestTemperature;
         
