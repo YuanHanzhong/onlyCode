@@ -1,204 +1,202 @@
 package _14_File类与IO流;
 
+/**
+ * 2022/7/12 12:54 NOTE
+ * 摘自zepplin, https://github.com/apache/zeppelin/blob/e0e2ca5f8087d8f47a9fba4bfe736b53a565cb11/zeppelin-interpreter/src/main/java/org/apache/zeppelin/interpreter/util/SqlSplitter.java
+ */
+
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- * A DFA split string to SQL statements.
- * 把sql文件切分为Flinksql可以执行的语句
+ * Split text into multiple sql statements.
  *
- * @author Ada Wong
- * @program chunjun
- * @create 2021/05/31
+ * inspired from https://github.com/postgres/pgadmin3/blob/794527d97e2e3b01399954f3b79c8e2585b908dd/
+ * pgadmin/dlg/dlgProperty.cpp#L999-L1045
+ *
+ *
  */
 public class SqlSplitter {
-
     
-    private static final char SINGLE_QUOTE = '\'';
-    private static final char DOUBLE_QUOTE = '\"';
-    private static final char BACKSLASH = '\\';
-    private char delimiter;
+    // it must be either 1 character or 2 character
+    private Set<String> singleLineCommentPrefixList = new HashSet<>();
     
-    public SqlSplitter(char delimiter) {
-        this.delimiter = delimiter;
+    public SqlSplitter() {
+        this.singleLineCommentPrefixList.add("--");
     }
     
     /**
-     * split sql to statements
      *
-     * <p>Examples:
-     *
-     * <ul>
-     *   *
-     *   <li>CREATE TABLE foo (id int) WITH ( pass = 'f"oo'); SELECT * FROM bar => [CREATE TABLE foo
-     *       (id int) WITH ( pass = 'f"oo')], [SELECT * FROM bar]
-     *   <li>SHOW TABLES; SELECT * FROM bar => [SHOW TABLES], [SELECT * FROM bar]
-     * </ul>
-     *
-     * @param string a sql string
-     * @return a sql list
+     * @param additionalSingleCommentPrefixList Besides the standard single line comment prefix '--',
+     *                                          you can also specify other characters for sql dialect
      */
-    public List<String> splitEscaped(String string) {
-        List<Token> tokens = tokenize(string);
-        return processTokens(tokens);
+    public SqlSplitter(String... additionalSingleCommentPrefixList) {
+        for (String singleLineCommentPrefix : additionalSingleCommentPrefixList) {
+            if (singleLineCommentPrefix.length() > 2) {
+                throw new RuntimeException("Invalid singleLineCommentPrefix: " + singleLineCommentPrefix +
+                                             ", it is at most 2 characters");
+            }
+            this.singleLineCommentPrefixList.add(singleLineCommentPrefix);
+        }
     }
     
-    private List<String> processTokens(List<Token> tokens) {
-        List<String> sqlStmts = new ArrayList<>();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Token token : tokens) {
-            if (token.getKind() == TokenKind.DELIMITER) {
-                // skip empty statement, e.g. ';;'.
-                if (stringBuilder.length() > 0) {
-                    sqlStmts.add(stringBuilder.toString());
-                    stringBuilder.setLength(0);
+    /**
+     * Split whole text into multiple sql statements.
+     * Two Steps:
+     *   Step 1, split the whole text into multiple sql statements.
+     *   Step 2, refine the results. Replace the preceding sql statements with empty lines, so that
+     *           we can get the correct line number in the parsing error message.
+     *
+     *  e.g.
+     *  select a from table_1;
+     *  select a from table_2;
+     *  The above text will be splitted into:
+     *  sql_1: select a from table_1
+     *  sql_2: \nselect a from table_2
+     *
+     * @param text
+     * @return
+     */
+    public List<String> splitSql(String text) {
+        List<String> queries = new ArrayList<>();
+        StringBuilder query = new StringBuilder();
+        char character;
+        
+        boolean multiLineComment = false;
+        boolean singleLineComment = false;
+        boolean singleQuoteString = false;
+        boolean doubleQuoteString = false;
+        
+        for (int index = 0; index < text.length(); index++) {
+            character = text.charAt(index);
+            
+            // end of single line comment
+            if (singleLineComment && (character == '\n')) {
+                singleLineComment = false;
+                query.append(character);
+                if (index == (text.length() - 1) && !query.toString().trim().isEmpty()) {
+                    // add query when it is the end of sql.
+                    queries.add(query.toString());
+                }
+                continue;
+            }
+            
+            // end of multiple line comment
+            if (multiLineComment && (index - 1) >= 0 && text.charAt(index - 1) == '/'
+                  && (index - 2) >= 0 && text.charAt(index - 2) == '*') {
+                multiLineComment = false;
+            }
+            
+            if (character == '\'' && !(singleLineComment || multiLineComment)) {
+                if (singleQuoteString) {
+                    singleQuoteString = false;
+                } else if (!doubleQuoteString) {
+                    singleQuoteString = true;
+                }
+            }
+            
+            if (character == '"' && !(singleLineComment || multiLineComment)) {
+                if (doubleQuoteString && index > 0) {
+                    doubleQuoteString = false;
+                } else if (!singleQuoteString) {
+                    doubleQuoteString = true;
+                }
+            }
+            
+            if (!singleQuoteString && !doubleQuoteString && !multiLineComment && !singleLineComment
+                  && text.length() > (index + 1)) {
+                if (isSingleLineComment(text.charAt(index), text.charAt(index + 1))) {
+                    singleLineComment = true;
+                } else if (text.charAt(index) == '/' && text.length() > (index + 2)
+                             && text.charAt(index + 1) == '*' && text.charAt(index + 2) != '+') {
+                    multiLineComment = true;
+                }
+            }
+            
+            if (character == ';' && !singleQuoteString && !doubleQuoteString && !multiLineComment && !singleLineComment) {
+                // meet the end of semicolon
+                if (!query.toString().trim().isEmpty()) {
+                    queries.add(query.toString());
+                    query = new StringBuilder();
+                }
+            } else if (index == (text.length() - 1)) {
+                // meet the last character
+                if ((!singleLineComment && !multiLineComment)) {
+                    query.append(character);
+                }
+                
+                if (!query.toString().trim().isEmpty()) {
+                    queries.add(query.toString());
+                    query = new StringBuilder();
+                }
+            } else if (!singleLineComment && !multiLineComment) {
+                // normal case, not in single line comment and not in multiple line comment
+                query.append(character);
+            } else if (character == '\n') {
+                query.append(character);
+            }
+        }
+        
+        List<String> refinedQueries = new ArrayList<>();
+        for (int i = 0; i < queries.size(); ++i) {
+            String emptyLine = "";
+            if (i > 0) {
+                emptyLine = createEmptyLine(refinedQueries.get(i-1));
+            }
+            if (isSingleLineComment(queries.get(i)) || isMultipleLineComment(queries.get(i))) {
+                // refine the last refinedQuery
+                if (refinedQueries.size() > 0) {
+                    String lastRefinedQuery = refinedQueries.get(refinedQueries.size() - 1);
+                    refinedQueries.set(refinedQueries.size() - 1,
+                      lastRefinedQuery + createEmptyLine(queries.get(i)));
                 }
             } else {
-                stringBuilder.append(token.getVal());
+                String refinedQuery = emptyLine + queries.get(i);
+                refinedQueries.add(refinedQuery);
             }
         }
-        // deal with not end of delimiter. e.g "CREATE xxx; INSERT xxx" .
-        if (stringBuilder.length() > 0) {
-            sqlStmts.add(stringBuilder.toString());
-        }
-        return sqlStmts;
+        
+        return refinedQueries;
     }
     
-    /**
-     * convert String to Token list. e.g. list is [TokenKind.STRING, TokenKind.DELIMITER,
-     * TokenKind.STRING]
-     *
-     * @param str SQL string
-     * @return Token list
-     */
-    private List<Token> tokenize(String str) {
-        char[] chars = str.toCharArray();
-        State state = State.UNQUOTED;
-        StringBuilder buffer = new StringBuilder();
-        List<Token> tokens = new ArrayList<>();
-        
-        for (char c : chars) {
-            switch (state) {
-                case UNQUOTED:
-                    if (c == SINGLE_QUOTE) {
-                        state = State.SINGLE_QUOTED;
-                        handleStartQuote(buffer, tokens, c);
-                    } else if (c == DOUBLE_QUOTE) {
-                        state = State.DOUBLE_QUOTED;
-                        handleStartQuote(buffer, tokens, c);
-                    } else if (c == delimiter) {
-                        handleDelimiter(buffer, tokens, c);
-                    } else {
-                        buffer.append(c);
-                    }
-                    break;
-                case SINGLE_QUOTED:
-                    if (c == SINGLE_QUOTE) {
-                        state = handleEndQuote(buffer, tokens, c);
-                    } else if (c == BACKSLASH) {
-                        state = State.AFTER_BACKSLASH_SINGLE_QUOTED;
-                        buffer.append(c);
-                    } else {
-                        buffer.append(c);
-                    }
-                    break;
-                case DOUBLE_QUOTED:
-                    if (c == DOUBLE_QUOTE) {
-                        state = handleEndQuote(buffer, tokens, c);
-                    } else if (c == BACKSLASH) {
-                        state = State.AFTER_BACKSLASH_DOUBLE_QUOTED;
-                        buffer.append(c);
-                    } else {
-                        buffer.append(c);
-                    }
-                    break;
-                case AFTER_BACKSLASH_SINGLE_QUOTED:
-                    state = State.SINGLE_QUOTED;
-                    buffer.append(c);
-                    break;
-                case AFTER_BACKSLASH_DOUBLE_QUOTED:
-                    state = State.DOUBLE_QUOTED;
-                    buffer.append(c);
-                    break;
-                default:
-                    break;
+    private boolean isSingleLineComment(String text) {
+        return text.trim().startsWith("--");
+    }
+    
+    private boolean isMultipleLineComment(String text) {
+        return text.trim().startsWith("/*") && text.trim().endsWith("*/");
+    }
+    
+    private String createEmptyLine(String text) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < text.length(); ++i) {
+            if (text.charAt(i) == '\n') {
+                builder.append('\n');
             }
         }
-        // handle sql that is not end of ';'
-        if (buffer.length() > 0) {
-            convertToToken(buffer, tokens, TokenKind.STRING);
+        return builder.toString();
+    }
+    
+    private boolean isSingleLineComment(char curChar, char nextChar) {
+        for (String singleCommentPrefix : singleLineCommentPrefixList) {
+            if (singleCommentPrefix.length() == 1) {
+                if (curChar == singleCommentPrefix.charAt(0)) {
+                    return true;
+                }
+            }
+            if (singleCommentPrefix.length() == 2) {
+                if (curChar == singleCommentPrefix.charAt(0) &&
+                      nextChar == singleCommentPrefix.charAt(1)) {
+                    return true;
+                }
+            }
         }
-        return tokens;
-    }
-    
-    private void handleDelimiter(StringBuilder buffer, List<Token> tokens, char delimiter) {
-        convertToToken(buffer, tokens, TokenKind.STRING);
-        buffer.append(delimiter);
-        convertToToken(buffer, tokens, TokenKind.DELIMITER);
-    }
-    
-    private void handleStartQuote(StringBuilder buffer, List<Token> tokens, char quote) {
-        convertToToken(buffer, tokens, TokenKind.STRING);
-        buffer.append(quote);
-    }
-    
-    private State handleEndQuote(StringBuilder buffer, List<Token> tokens, char quote) {
-        buffer.append(quote);
-        convertToToken(buffer, tokens, TokenKind.STRING);
-        return State.UNQUOTED;
-    }
-    
-    /**
-     * convert to token from buffer, and clear buffer.
-     *
-     * @param stringBuilder
-     * @param tokens
-     * @param kind
-     */
-    private void convertToToken(StringBuilder stringBuilder, List<Token> tokens, TokenKind kind) {
-        Token token = new Token(kind, stringBuilder.toString());
-        tokens.add(token);
-        stringBuilder.setLength(0);
-    }
-    
-    private enum State {
-        /** current char in single quote */
-        SINGLE_QUOTED,
-        /** current char in single quote，and after '\' */
-        AFTER_BACKSLASH_SINGLE_QUOTED,
-        /** current char in double quote */
-        DOUBLE_QUOTED,
-        /** current char in double quote，and after '\' */
-        AFTER_BACKSLASH_DOUBLE_QUOTED,
-        /** out of quote */
-        UNQUOTED
-    }
-    
-    private class Token {
-        
-        private TokenKind kind;
-        private String val;
-        
-        Token(TokenKind kind, String val) {
-            this.kind = kind;
-            this.val = val;
-        }
-        
-        public TokenKind getKind() {
-            return kind;
-        }
-        
-        public String getVal() {
-            return val;
-        }
-    }
-    
-    /** There are only two kinds */
-    private enum TokenKind {
-        /** SQL string */
-        STRING,
-        /** SQL delimiter */
-        DELIMITER
+        return false;
     }
 }

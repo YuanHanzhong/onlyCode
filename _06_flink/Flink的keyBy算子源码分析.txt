@@ -1,0 +1,35 @@
+
+分组与分区的区别：
+	-分组：是一个逻辑的概念，按照指定的key对流中的数据进行区分，经过keyby，同一个分组的数据肯定会进入同一个分区
+	-分区：下游算子的一个并行实例（等价于一个slot），同一个分区内，可能有多个分组
+ 	
+keyBy源码
+	-288 DataStream类keyBy
+		*290 new KeyedStream<>(this, clean(key));
+			//创建分区器对象		
+			//keySelector我们实现类指定分区规则  
+			//StreamGraphGenerator.DEFAULT_LOWER_BOUND_MAX_PARALLELISM = 1 << 7 = 128  最大并行度范围
+			>132 new KeyGroupStreamPartitioner<>(keySelector, StreamGraphGenerator.DEFAULT_LOWER_BOUND_MAX_PARALLELISM))
+				~54 KeyGroupStreamPartitioner类 selectChannel方法
+					//获取key
+					!57 key = keySelector.getKey(record.getInstance().getValue());
+					//执行key分配到下游的哪个分区中 
+					//maxParallelism = 128
+ 					//numberOfChannels = 下游算子的 并行度（分区数）
+					!61 return KeyGroupRangeAssignment.assignKeyToParallelOperator(key, maxParallelism, numberOfChannels);
+						@50 return computeOperatorIndexForKeyGroup(maxParallelism, parallelism, assignToKeyGroup(key, maxParallelism));
+							#60 assignToKeyGroup(key, maxParallelism)  
+								//key.hashCode()  第一次对key进行hash计算
+								//62 return computeKeyGroupForKeyHash(key.hashCode(), maxParallelism);
+									//对经过hash计算的key再次进行murmurHash   得到hash值后，与最大并行度进行取模
+									$73 return MathUtils.murmurHash(keyHash) % maxParallelism;
+						   	
+
+							#119 进入computeOperatorIndexForKeyGroup方法后 
+								return keyGroupId * parallelism / maxParallelism;
+								
+
+
+
+
+

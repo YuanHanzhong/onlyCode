@@ -2,7 +2,6 @@ package com.atguigu.gmall.realtime.app.dwd.db;
 
 import com.atguigu.gmall.realtime.util.MyKafkaUtil;
 import com.atguigu.gmall.realtime.util.MySqlUtil;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;

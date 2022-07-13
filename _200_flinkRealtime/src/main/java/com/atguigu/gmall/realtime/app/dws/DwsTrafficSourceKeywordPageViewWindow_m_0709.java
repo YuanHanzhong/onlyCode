@@ -70,8 +70,8 @@ public class DwsTrafficSourceKeywordPageViewWindow_m_0709 {
 
         tableEnv.createTemporaryView("filter_table", filterTable);
         
-        // 2022/7/10 9:32 NOTE ASK 想要立刻看下上表数据, 就创建按临时视图
-        //tableEnv.executeSql("select * from filter_table").print(); // 2022/7/10 15:25 NOTE GTO table的只能1次, 有了这个, 下面就不执行了
+        // 2022/7/10 9:32 NOTE  想要立刻看下上表数据, 就创建按临时视图
+        //tableEnv.executeSql("select * from filter_table").print(); // 2022/7/10 15:25 NOTE GOT table的只能1次, 有了这个, 下面就不执行了
 
         //TODO 5.使用自定义函数，对搜索内容进行分词  并和原有字段进行连接
         Table keywordTable = tableEnv.sqlQuery("SELECT keyword,rowtime FROM filter_table,LATERAL TABLE(ik_analyze(fullword)) t(keyword)");

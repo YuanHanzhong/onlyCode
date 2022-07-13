@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * Author: Felix
  * Date: 2022/5/31
- * Desc:用户域用户注册实体类
+ * Desc:用户域用户注册实体类, 根据需求来, 要什么, 有什么
  */
 @Data
 @AllArgsConstructor
@@ -20,4 +20,3 @@ public class UserRegisterBean {
     // 时间戳
     Long ts;
 }
-

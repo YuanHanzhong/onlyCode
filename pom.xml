@@ -22,6 +22,7 @@
         <module>_10_es</module>
         <module>_200_flinkRealtime</module>
         <module>_11_Algorithm</module>
+        <module>_06_flink_wu</module>
 
     </modules>
 

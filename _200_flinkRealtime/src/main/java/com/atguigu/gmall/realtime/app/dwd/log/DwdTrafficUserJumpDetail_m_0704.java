@@ -25,9 +25,10 @@ import java.util.List;
 import java.util.Map;
 
 /*
- * Author: Felix
- * Date: 2022/5/23
  * Desc: 流量域用户跳出明细事务事实表
+ * 目的
+ *      介绍CEP,
+ *      实际上, 放到实时不合适, 比如设为30分钟, 就不实时了
  * 需要启动的进程
  *      zk、kafka、flume、[hdfs]、DwdTrafficBaseLogSplit、DwdTrafficUserJumpDetail
  * // 2022/7/7 8:58 NOTE 练习CEP编程
@@ -39,7 +40,8 @@ public class DwdTrafficUserJumpDetail_m_0704 {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         //1.2 设置并行度
         env.setParallelism(4);
-       /* //TODO 2.检查点相关的设置
+       /*
+       //TODO 2.检查点相关的设置
         //2.1 开启检查点
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
         //2.2 设置检查点超时时间

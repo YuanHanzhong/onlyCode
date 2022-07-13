@@ -53,8 +53,7 @@ public class DwdTrafficUniqueVisitorDetail_m_0704 {
         env.setStateBackend(new HashMapStateBackend());
         env.getCheckpointConfig().setCheckpointStorage(GmallConfig_m.CHECK_POINT_STORAGE);
         
-        // 高可用有专门的地址 GOT 2022年7月4日
-        // 某个API可以点进去 GOT 2022年7月4日
+        // 高可用有专门的地址 2022年7月4日
         //env.setDefaultSavepointDirectory("hdfs://hadoop102:8020/flinkReaktime/checkPoint");
         
         

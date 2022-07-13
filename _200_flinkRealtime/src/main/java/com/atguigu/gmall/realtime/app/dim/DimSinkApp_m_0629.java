@@ -8,11 +8,13 @@ import com.atguigu.gmall.realtime.app.func.TableProcessFunction;
 import com.atguigu.gmall.realtime.bean.TableProcess;
 import com.atguigu.gmall.realtime.common.GmallConfig_m;
 import com.atguigu.gmall.realtime.util.MyKafkaUtil;
+import com.atguigu.gmall.realtime.util.MyKafkaUtil_m_0712;
 import com.ververica.cdc.connectors.mysql.source.MySqlSource;
 import com.ververica.cdc.connectors.mysql.table.StartupOptions;
 import com.ververica.cdc.debezium.JsonDebeziumDeserializationSchema;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.FilterFunction;
+import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.state.MapStateDescriptor;
 import org.apache.flink.api.common.time.Time;
@@ -85,7 +87,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
  *      DimApp从topic_db主题读取数据进行输出
  */
 public class DimSinkApp_m_0629 {
-    // 2022/7/10 19:39 NOTE ASK package 之后报很多找不到包的错误
+    // 2022/7/10 19:39 NOTE package 之后报很多找不到包的错误, 就是因为引入了一个不必要的包
     public static void main(String[] args) throws Exception {
         //TODO 1.基本环境准备
         //1.1 指定流处理环境
@@ -93,25 +95,25 @@ public class DimSinkApp_m_0629 {
         //1.2 设置并行度
         env.setParallelism(4);
 
-        
-        //2.1 开启检查点
-        env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
-        //2.5 设置重启策略
-        env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30), Time.seconds(3)));
-        
-        
-        //存储
-        //2.6 设置状态后端
-        env.setStateBackend(new HashMapStateBackend());
-        env.getCheckpointConfig().setCheckpointStorage(GmallConfig_m.CHECK_POINT_STORAGE);
-        System.setProperty("HADOOP_USER_NAME","atguigu");
-        //2.3 job取消之后，检查点是否保留
-        env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-        
-        //2.2 检查点超时时间, 60s
-        env.getCheckpointConfig().setCheckpointTimeout(60000L);
-        //2.4 两个检查点之间最小时间间隔
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
+        //
+        ////2.1 开启检查点
+        //env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
+        ////2.5 设置重启策略
+        //env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30), Time.seconds(3)));
+        //
+        //
+        ////存储
+        ////2.6 设置状态后端
+        //env.setStateBackend(new HashMapStateBackend());
+        //env.getCheckpointConfig().setCheckpointStorage(GmallConfig_m.CHECK_POINT_STORAGE);
+        //System.setProperty("HADOOP_USER_NAME","atguigu");
+        ////2.3 job取消之后，检查点是否保留
+        //env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        //
+        ////2.2 检查点超时时间, 60s
+        //env.getCheckpointConfig().setCheckpointTimeout(60000L);
+        ////2.4 两个检查点之间最小时间间隔
+        //env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
 
         
         //TODO 3.从Kafka的topic_db中读取业务数据
@@ -124,9 +126,11 @@ public class DimSinkApp_m_0629 {
 
         //3.3 消费数据 封装为流
         DataStreamSource<String> kafkaStrDS = env.addSource(kafkaConsumer);
+        
 
         //TODO 4.对读取的数据进行类型转换       jsonstr->jsonObj
-        /*//匿名内部类
+        
+        //匿名内部类
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(
             new MapFunction<String, JSONObject>() {
                 @Override
@@ -135,11 +139,15 @@ public class DimSinkApp_m_0629 {
                 }
             }
         );
+        
         //lambda表达式
-        SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(
-            jsonStr -> JSON.parseObject(jsonStr)
-        );*/
-        SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON::parseObject);
+        //SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(
+        //    jsonStr -> JSON.parseObject(jsonStr)
+        //);
+        
+
+        // 匿名内部类的方式比较好, 其他的容易类型擦除
+        //SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON::parseObject);
 
         //TODO 5.对读取的数据进行简单的ETL-----主流
         SingleOutputStreamOperator<JSONObject> filterDS = jsonObjDS.filter(
@@ -160,41 +168,41 @@ public class DimSinkApp_m_0629 {
             }
         );
         filterDS.print(">>>>");
-
-        //TODO 6.使用FlinkCDC读取配置表数据---配置流
-        MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
-            .hostname("hadoop102")
-            .port(3306)
-            .databaseList("gmall2022_config") // set captured database
-            .tableList("gmall2022_config.table_process") // set captured table
-            .username("root")
-            .password("root")
-            .startupOptions(StartupOptions.initial())
-            .deserializer(new JsonDebeziumDeserializationSchema()) // converts SourceRecord to JSON String
-            .build();
-
-
-        DataStreamSource<String> mySQLDS = env
-            .fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), "MySQL Source");
-        mySQLDS.print(">>>>");
-
-        //TODO 7.将配置流进行广播  ---广播流
-        MapStateDescriptor<String, TableProcess> mapStateDescriptor
-            = new MapStateDescriptor<>("mapStateDescriptor", String.class, TableProcess.class);
-        BroadcastStream<String> broadcastDS = mySQLDS.broadcast(mapStateDescriptor);
-
-        //TODO 8.将主流和广播流关联在一起  ---connect
-        BroadcastConnectedStream<JSONObject, String> connectDS = filterDS.connect(broadcastDS);
-
-        //TODO 9.分别对两条流进行处理---process    从主流中将维度数据过滤出来
-        SingleOutputStreamOperator<JSONObject> dimDS = connectDS.process(
-            new TableProcessFunction(mapStateDescriptor)
-        );
-
-        dimDS.print(">>>>");
-
-        //TODO 10.将维度数据写到phoenix表中
-        dimDS.addSink(new DimSinkFunction());
+        //
+        ////TODO 6.使用FlinkCDC读取配置表数据---配置流
+        //MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
+        //    .hostname("hadoop102")
+        //    .port(3306)
+        //    .databaseList("gmall2022_config") // set captured database
+        //    .tableList("gmall2022_config.table_process") // set captured table
+        //    .username("root")
+        //    .password("root")
+        //    .startupOptions(StartupOptions.initial())
+        //    .deserializer(new JsonDebeziumDeserializationSchema()) // converts SourceRecord to JSON String
+        //    .build();
+        //
+        //
+        //DataStreamSource<String> mySQLDS = env
+        //    .fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), "MySQL Source");
+        //mySQLDS.print(">>>>");
+        //
+        ////TODO 7.将配置流进行广播  ---广播流
+        //MapStateDescriptor<String, TableProcess> mapStateDescriptor
+        //    = new MapStateDescriptor<>("mapStateDescriptor", String.class, TableProcess.class);
+        //BroadcastStream<String> broadcastDS = mySQLDS.broadcast(mapStateDescriptor);
+        //
+        ////TODO 8.将主流和广播流关联在一起  ---connect
+        //BroadcastConnectedStream<JSONObject, String> connectDS = filterDS.connect(broadcastDS);
+        //
+        ////TODO 9.分别对两条流进行处理---process    从主流中将维度数据过滤出来
+        //SingleOutputStreamOperator<JSONObject> dimDS = connectDS.process(
+        //    new TableProcessFunction(mapStateDescriptor)
+        //);
+        //
+        //dimDS.print(">>>>");
+        //
+        ////TODO 10.将维度数据写到phoenix表中
+        //dimDS.addSink(new DimSinkFunction());
 
         env.execute();
     }

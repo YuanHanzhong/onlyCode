@@ -1,5 +1,6 @@
 package com.atguigu.gmall.realtime.util;
 
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
@@ -19,6 +20,7 @@ import java.util.Properties;
  * Desc: 操作kafka的工具类
  */
 public class MyKafkaUtil {
+    
     private static final String KAFKA_SERVER = "hadoop102:9092,hadoop103:9092,hadoop104:9092";
 
     //获取消费者对象的方法
@@ -27,8 +29,10 @@ public class MyKafkaUtil {
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
         props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 
-        //FlinkKafkaConsumer kafkaConsumer = new FlinkKafkaConsumer(topic,new SimpleStringSchema(),props);
-        FlinkKafkaConsumer<String> kafkaConsumer = new FlinkKafkaConsumer<>(topic, new KafkaDeserializationSchema<String>() {
+        //FlinkKafkaConsumer kafkaConsumer1 = new FlinkKafkaConsumer(topic,new SimpleStringSchema(),props);
+        FlinkKafkaConsumer<String> kafkaConsumer = new FlinkKafkaConsumer<>(
+          topic,
+          new KafkaDeserializationSchema<String>() {
             @Override
             public boolean isEndOfStream(String nextElement) {
                 return false;

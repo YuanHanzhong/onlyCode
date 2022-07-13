@@ -53,7 +53,7 @@ public class MyClickHouseUtil {
                 }
             },
             new JdbcExecutionOptions.Builder()
-                .withBatchSize(5)
+                .withBatchSize(5) // 有5条之后才写.
                 .withBatchIntervalMs(1000)
                 .build(),
 // 2022/7/10 16:19 NOTE GOT 构造者设计模式, 让new 做参数时很方便

@@ -42,11 +42,8 @@ public class DwdToolCouponOrder_m_0709 {
 
         tableEnv.createTemporaryView("result_table", couponUseOrder);
     
-        // 2022/7/10 8:03 NOTE GOT 输出下结果
-        tableEnv.executeSql("select * from result_table").print(); // 注释掉.print(); 后数据就能到kafka了
-        tableEnv.sqlQuery("select * from result_table");//.print(); // 注释掉.print(); 后数据就能到kafka了
-        // 2022/7/10 10:12 NOTE ASK sqlQurey, 只能输出一次,
-    
+        // 2022/7/10 8:03 NOTE 输出下结果
+        //tableEnv.executeSql("select * from result_table").print(); // 注释掉.print(); 后数据就能到kafka了, 点进去有说明
     
         // TODO 5. 建立 Upsert-Kafka dwd_tool_coupon_order 表
         tableEnv.executeSql("create table dwd_tool_coupon_order(\n" +

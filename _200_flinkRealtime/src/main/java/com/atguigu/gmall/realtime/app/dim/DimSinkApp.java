@@ -124,6 +124,7 @@ public class DimSinkApp {
         DataStreamSource<String> kafkaStrDS = env.addSource(kafkaConsumer);
 
         //TODO 4.对读取的数据进行类型转换       jsonstr->jsonObj
+        // NOTE json的来源
         /*//匿名内部类
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(
             new MapFunction<String, JSONObject>() {
@@ -137,6 +138,12 @@ public class DimSinkApp {
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(
             jsonStr -> JSON.parseObject(jsonStr)
         );*/
+        /*
+         2022/7/13 9:43 NOTE
+         STAR map方法里, 就是常常2种情况, -> , JSON::parseObject
+         
+        */
+        
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON::parseObject);
 
         //TODO 5.对读取的数据进行简单的ETL-----主流

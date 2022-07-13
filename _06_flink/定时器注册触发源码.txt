@@ -1,0 +1,43 @@
+-定时器触发？
+    watermark >= 注册的时间
+
+-思考：为什么定时器延迟了1s触发
+	因为定时器和窗口不一样，窗口的最大时间减了1ms，watermark = 最大事件时间 - 乱序程度 - 1ms，也减去了1ms，这两个1ms抵消了。
+	但是定时器的时间并没有减1ms
+    例如，乱序程度设置3s，注册了一个10s的定时器，
+    当eventtime = 13s时， watermark = 13s - 3s -1ms = 9999ms，小于注册的定时器时间10s，无法触发。
+    只有当eventtime = 14s，watermark = 14s -3 - 1ms = 10999ms，大于 注册的时间10s，可以触发。
+
+以注册事件时间定时器为例
+	-ctx.timerService().registerEventTimeTimer
+		*SimpleTimerService类的registerEventTimeTimer()
+			>InternalTimerServiceImpl类	registerEventTimeTimer	
+				//每调用一次register方法，都会new一个定时器对象，并把定时器对象，放入一个队列里
+				~217 eventTimeTimersQueue.add(new TimerHeapInternalTimer<>(time, (K) keyContext.getCurrentKey(), namespace));
+					//Adds the given element to the set, if it is not already contained.
+					//这个队列add对象，会去重,如果重复注册同一个时间的定时器，只会放入一个对象
+					!add()
+
+				~268 如果队列中有定时器，并且满足timer.getTimestamp() <= time
+
+					//timer就是创建的定时器对象  
+					//timer.getTimestamp() 获取定时器的执行时间
+					//time 就是watermark
+					//processingTimeTimersQueue.peek()  Retrieves, but does not remove
+					//processingTimeTimersQueue.poll()  Retrieves and removes the first element
+					while ((timer = processingTimeTimersQueue.peek()) != null && timer.getTimestamp() <= time) {
+						processingTimeTimersQueue.poll(); 
+						//从当前分组范围内获取
+						keyContext.setCurrentKey(timer.getKey());
+						//触发定时器的执行操作
+						triggerTarget.onProcessingTime(timer);
+					}	
+
+					!triggerTarget.onProcessingTime(timer); 
+						@底层调用KeyedProcessOperator的onProcessingTime(timer)
+							# 72 invokeUserFunction(TimeDomain.EVENT_TIME, timer);
+								//调用我们定义的函数类的onTimer方法，即为定时器到时的执行方法
+								$94 userFunction.onTimer(timer.getTimestamp(), onTimerContext, collector);
+
+
+
