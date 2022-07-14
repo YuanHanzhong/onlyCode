@@ -61,6 +61,7 @@ import java.util.Properties;
 public class MyKafkaUtil_m_0712 {
     private static final String KAFKA_SERVER = "hadoop102:9092,hadoop103:9092,hadoop104:9092";
     
+    // P2 完全手动封装自己的kafka
     
     /*
      2022/7/12 21:12 NOTE // GOT Flink 从Kafka中精准一次消费
@@ -69,7 +70,7 @@ public class MyKafkaUtil_m_0712 {
     public static FlinkKafkaConsumer<String> getKafkaConsumer(String topic, String groupId) {
     
         Properties props = new Properties();
-        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId); // P3 指定groupId的意义何在
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
     
         return new FlinkKafkaConsumer<String>(
@@ -118,6 +119,8 @@ public class MyKafkaUtil_m_0712 {
         
         return kafkaProducer;
     }
+    
+    
     
     //获取kafka连接器相关连接属性
     public static String getKafkaDDL(String topic, String groupId) {

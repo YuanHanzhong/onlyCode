@@ -14,7 +14,7 @@ import org.apache.flink.api.common.eventtime.*;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 // 自定义水位线的产生
-public class CustomWatermarkTest {
+public class CustomWatermarkTest_m_0713 {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
@@ -27,7 +27,6 @@ public class CustomWatermarkTest {
         env.execute();
     }
 
-    // createTimestampAssigner
     public static class CustomWatermarkStrategy implements WatermarkStrategy<Event> {
         @Override
         public TimestampAssigner<Event> createTimestampAssigner(TimestampAssignerSupplier.Context context) {
@@ -45,6 +44,7 @@ public class CustomWatermarkTest {
         }
     }
 
+    //
     public static class CustomPeriodicGenerator implements WatermarkGenerator<Event> {
         private Long delayTime = 5000L; // 延迟时间
         private Long maxTs = Long.MIN_VALUE + delayTime + 1L; // 观察到的最大时间戳

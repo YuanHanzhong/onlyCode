@@ -31,14 +31,12 @@ import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Author: Felix
- * Date: 2022/6/1
  * Desc: 交易域用户-SPU维度聚合统计
  * 需要启动的进程
  *      zk、kafka、maxwell、hdfs、hbase、redis、clickhouse、
  *      DwdTradeOrderDetail、DwdTradeOrderPreProcess、DwsTradeUserSpuOrderWindow
- *
  */
+
 public class DwsTradeUserSpuOrderWindow {
     public static void main(String[] args) throws Exception {
         //TODO 1.基本环境准备
@@ -55,15 +53,59 @@ public class DwsTradeUserSpuOrderWindow {
         FlinkKafkaConsumer<String> kafkaConsumer = MyKafkaUtil.getKafkaConsumer(topic, groupId);
         //3.3 消费数据 封装为流
         DataStreamSource<String> kafkaStrDS = env.addSource(kafkaConsumer);
+        //source.print("source-->");
+    
+        // 2022/7/14 10:03
+        // kafka中的都是kv json字符串, 只有一级
+        // source-->:4>
+        // {
+        //      "id":"367",
+        //      "order_id":"180",
+        //      "user_id":"152",
+        //      "sku_id":"1",
+        //      "sku_name":"小米10 至尊纪念版 双模5G 骁龙865 120HZ高刷新率 120倍长焦镜头 120W快充 8GB+128GB 陶瓷黑 游戏手机",
+        //      "province_id":"13",
+        //      "activity_id":null,
+        //      "activity_rule_id":null,
+        //      "coupon_id":null,"date_id":"2022-07-14",
+        //      "create_time":"2022-07-14 09:57:32",
+        //      "source_id":null,
+        //      "source_type_code":"2401",
+        //      "source_type_name":"用户查询",
+        //      "sku_num":"2",
+        //      "split_original_amount":"11998.0000",
+        //      "split_activity_amount":null,
+        //      "split_coupon_amount":null,
+        //      "split_total_amount":"11998.0",
+        //      "ts":"1657763853",
+        //      "row_op_ts":"2022-07-14 01:57:38.326Z"
+        // }
+        
+        
         //TODO 4.对读取的数据进行类型转换  jsonStr->jsonObj
 
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON::parseObject);
-        //{"create_time":"2022-06-01 14:27:16","sku_num":"2","activity_rule_id":"2","split_original_amount":"18394.0000",
-        // "sku_id":"12","date_id":"2022-06-01","source_type_name":"商品推广",
-        // "user_id":"309","province_id":"17","source_type_code":"2402","row_op_ts":"2022-06-01 06:27:18.025Z",
-        // "activity_id":"1","sku_name":"Apple iPhone 12 (A2404) 128GB 黑色 支持移动联通电信5G 双卡双待手机","id":"707",
-        // "source_id":"24","order_id":"297","split_activity_amount":"1200.0","split_total_amount":"17194.0","ts":"1654064836"}
-        //jsonObjDS.print(">>>");
+        //jsonObjDStream.print("jsonObjDStream-->");
+    
+        // 2022/7/14 10:07
+        //jsonObjDStream-->:4>
+        // {
+        //      "create_time":"2022-07-14 09:57:32",
+        //      "sku_num":"2",
+        //      "split_original_amount":"11998.0000",
+        //      "sku_id":"1",
+        //      "date_id":"2022-07-14",
+        //      "source_type_name":"用户查询",
+        //      "user_id":"152",
+        //      "province_id":"13",
+        //      "source_type_code":"2401",
+        //      "row_op_ts":"2022-07-14 01:57:38.326Z",
+        //      "sku_name":"小米10 至尊纪念版 双模5G 骁龙865 120HZ高刷新率 120倍长焦镜头 120W快充 8GB+128GB 陶瓷黑 游戏手机",
+        //      "id":"367",
+        //      "order_id":"180",
+        //      "split_total_amount":"11998.0",
+        //      "ts":"1657763853"
+        // }
 
         //TODO 5.按照订单明细id进行分组
         KeyedStream<JSONObject, String> keyedDS = jsonObjDS.keyBy(jsonObj -> jsonObj.getString("id"));

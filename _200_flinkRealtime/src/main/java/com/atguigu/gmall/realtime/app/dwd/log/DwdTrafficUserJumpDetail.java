@@ -34,36 +34,14 @@ import java.util.Map;
  */
 public class DwdTrafficUserJumpDetail {
     public static void main(String[] args) throws Exception {
-        //TODO 1.基本环境准备
-        //1.1 指定流处理环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        //1.2 设置并行度
         env.setParallelism(4);
-       /* //TODO 2.检查点相关的设置
-        //2.1 开启检查点
-        env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
-        //2.2 设置检查点超时时间
-        env.getCheckpointConfig().setCheckpointTimeout(60000L);
-        //2.3 job取消后检查点是否保留
-        env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-        //2.4 设置两个检查点之间最小时间间隔
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
-        //2.5 设置重启策略
-        env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30),Time.seconds(3)));
-        //2.6 设置状态后端
-        env.setStateBackend(new HashMapStateBackend());
-        //env.getCheckpointConfig().setCheckpointStorage(new JobManagerCheckpointStorage());
-        env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop102:8020/xxx");
-        //2.7 设置 操作hadoop的用户
-        System.setProperty("HADOOP_USER_NAME","atguigu");
-        */
-        //TODO 3.从kafka中读取数据
-        //3.1 声明消费的主题以及消费者组
+
         String topic = "dwd_traffic_page_log";
         String groupId = "dwd_traffic_user_jump_group";
         //3.2 创建消费者对象
         FlinkKafkaConsumer<String> kafkaConsumer = MyKafkaUtil.getKafkaConsumer(topic, groupId);
-        //3.3 消费数据 封装流
+        //3.3 消费数据 封装流, 简单测试
        /* DataStream<String> kafkaStrDS = env
             .fromElements(
                 "{\"common\":{\"mid\":\"101\"},\"page\":{\"page_id\":\"home\"},\"ts\":10000} ",
@@ -83,7 +61,6 @@ public class DwdTrafficUserJumpDetail {
 
         //TODO 5.指定Watermark以及提取事件时间字段
         SingleOutputStreamOperator<JSONObject> jsonObjWithWatermarkDS = jsonObjDS.assignTimestampsAndWatermarks(
-            //WatermarkStrategy.<JSONObject>forBoundedOutOfOrderness(Duration.ofSeconds(3))
             WatermarkStrategy
                 .<JSONObject>forMonotonousTimestamps()
                 .withTimestampAssigner(

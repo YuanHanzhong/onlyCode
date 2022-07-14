@@ -40,8 +40,10 @@ public class EmitWatermarkInSourceFunction {
                 String username = userArr[random.nextInt(userArr.length)];
                 String url      = urlArr[random.nextInt(urlArr.length)];
                 Event event = new Event(username, url, currTs);
+                
                 // 使用collectWithTimestamp方法将数据发送出去，并指明数据中的时间戳的字段
                 sourceContext.collectWithTimestamp(event, event.timestamp);
+                
                 // 发送水位线
                 sourceContext.emitWatermark(new Watermark(event.timestamp - 1L));
                 Thread.sleep(1000L);

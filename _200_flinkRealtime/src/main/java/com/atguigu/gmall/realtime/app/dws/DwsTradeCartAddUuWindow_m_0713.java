@@ -52,7 +52,7 @@ public class DwsTradeCartAddUuWindow_m_0713 {
         //{"sku_num":"1","user_id":"105","sku_id":"13","source_type":"2401","id":"3408","source_type_name":"用户查询","ts":"1654046562"}
         //jsonObjDS.print(">>>>>"); // STAR 时刻知道当前数据是什么样的
         
-        //TODO 5.指定watermark以及提取事件时间字段 P1
+        //TODO 5.指定watermark以及提取事件时间字段
     
     
         SingleOutputStreamOperator<JSONObject> jsonObjWithWatermarkDS = jsonObjDS.assignTimestampsAndWatermarks(

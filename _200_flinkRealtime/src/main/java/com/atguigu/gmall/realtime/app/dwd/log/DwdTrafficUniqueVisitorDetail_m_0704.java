@@ -23,15 +23,10 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 
 /*
- * Author: Felix
- * Date: 2022/5/21
  * Desc: 流量域, 独立访客, 日活, Unique Visitor, Daily Active Visitor
  * 需要启动的进程
  *      zk、kafka、[hdfs]、flume、DwdTrafficBaseLogSplit、DwdTrafficUniqueVisitorDetail
  * 执行流程
- * // 2022/7/7 8:58 NOTE
- *
- *
  */
 public class DwdTrafficUniqueVisitorDetail_m_0704 {
     public static void main(String[] args) throws Exception {

@@ -76,11 +76,7 @@ public class DwsUserUserLoginWindow_m_0713 {
     
     
     
-        //TODO 6.指定Watermark以及提取事件时间字段
-        //filterDS.assignTimestampsAndWatermarks(
-        //  WatermarkStrategy.<>forMonotonousTimestamps() 怎么写出来的 P2
-        //)
-
+ 
         
         SingleOutputStreamOperator<JSONObject> jsonObjWithWatermarkDS = filterDS.assignTimestampsAndWatermarks(
           WatermarkStrategy
@@ -181,7 +177,7 @@ public class DwsUserUserLoginWindow_m_0713 {
         
         //TODO 9.开窗
         /*
-         2022/7/13 10:32 GOT 聚合之前一定先开窗, P2, 再练习以下
+         2022/7/13 10:32 GOT 聚合之前一定先开窗, 再练习以下
         */
         AllWindowedStream<UserLoginBean, TimeWindow> windowDS
           = uuAndBackDS.windowAll(TumblingEventTimeWindows.of(Time.seconds(10)));
@@ -203,7 +199,7 @@ public class DwsUserUserLoginWindow_m_0713 {
               // PROCESS 更底层
               public void apply(TimeWindow window, Iterable<UserLoginBean> values, Collector<UserLoginBean> out) throws Exception {
                   // 补充属性
-                  // P2 DateFormat 神器
+                  // DateFormat 神器
                   for (UserLoginBean userLoginBean : values) {
                       userLoginBean.setStt(DateFormatUtil.toYmdHms(window.getStart()));
                       userLoginBean.setEdt(DateFormatUtil.toYmdHms(window.getEnd()));

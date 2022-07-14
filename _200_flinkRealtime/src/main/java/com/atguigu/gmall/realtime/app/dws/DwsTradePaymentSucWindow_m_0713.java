@@ -156,7 +156,7 @@ public class DwsTradePaymentSucWindow_m_0713 {
         );
 
         //TODO 10.将计算的结果写到ck中
-        reduceDS.print(">>");
+        reduceDS.print("reduceDS ---> ");
         reduceDS.addSink(
             MyClickHouseUtil.getJdbcSink("insert into dws_trade_payment_suc_window values(?,?,?,?,?)")
         );

@@ -45,23 +45,26 @@ public class DwsUserUserRegisterWindow_m_0713 {
         
         
         //TODO 5.指定Watermark以及提取事件时间字段
+
+    
+        // GOT 水位线 <--> 很精确 <--> 单位为毫秒 <--> 时间语义 <--> 触发窗口执行
+        // GOT barria <--> checkpoint <--> 故障恢复 <--> 触发存储状态
+        // GOT binlog <--> 备份 <--> 不需要太频繁, 不需要太准确 <--> 单位为秒
+        // NOTE <T> forBoundedOutofOrderness, 是有泛型的
+
+    
         SingleOutputStreamOperator<JSONObject> jsonObjWithWatermarkDS = jsonObjDS.assignTimestampsAndWatermarks(
-          WatermarkStrategy
-            .<JSONObject>forBoundedOutOfOrderness(Duration.ofSeconds(3))
-            .withTimestampAssigner(
-              new SerializableTimestampAssigner<JSONObject>() {
-                  @Override
-                  public long extractTimestamp(JSONObject jsonObj, long recordTimestamp) {
-                      return jsonObj.getLong("ts") * 1000;
-                      // ts来自binlog, 近似于mysql中的createtime或者operatetiem, 这样处理更简单.
-                      // binlog的单位为毫秒
-               
-                  }
-              }
-            )
+          WatermarkStrategy.<JSONObject>forBoundedOutOfOrderness(Duration.ofSeconds(3))
+            .withTimestampAssigner(new SerializableTimestampAssigner<JSONObject>() {
+                @Override
+                public long extractTimestamp(JSONObject element, long recordTimestamp) {
+                    return element.getLong("ts") * 1000;
+                }
+            })
         );
-        
-        //TODO 6.开窗 P2 有2种方式, 分别什么时候用?
+    
+    
+        //TODO 6.开窗有2种方式, 分别什么时候用?
         AllWindowedStream<JSONObject, TimeWindow> windowDS =
           jsonObjWithWatermarkDS.windowAll(
             TumblingEventTimeWindows.of(Time.seconds(10)) // waterMark需要触发, 所以需要执行2次模拟数据
