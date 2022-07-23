@@ -96,39 +96,39 @@ public class DimSinkApp_m_0629 {
         env.setParallelism(4);
 
         // STAR 添加以来的时候, 放到最后比较好, 避免改变原来的依赖结构
-
-        //2.1 开启检查点
-        env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
-        //2.5 设置重启策略
-        env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30), Time.seconds(3)));
-
-
-        //存储
-        //2.6 设置状态后端, 即主要设置本地状态保存在哪里
-        /*
-         2022/7/13 20:24 状态后端
-         区别
-            hash, **本地状态**完全在内存中, 快而小
-            rocksdb, **本地状态**完全在在job mananger的文件系统中(固态或磁盘), 慢而大
-        */
-        
-        
-        //env.setStateBackend(new EmbeddedRocksDBStateBackend()); // 使用Rocksdb, 需要引入相关依赖
-        env.setStateBackend(new HashMapStateBackend());
-        
-        /*
-         2022/7/13 20:59 设置持久化存储位置, 速度
-        */
-        
-        env.getCheckpointConfig().setCheckpointStorage(GmallConfig_m.CHECK_POINT_STORAGE);
-        System.setProperty("HADOOP_USER_NAME","atguigu");
-        //2.3 job取消之后，检查点是否保留
-        env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-
-        //2.2 检查点超时时间, 60s
-        env.getCheckpointConfig().setCheckpointTimeout(60000L);
-        //2.4 两个检查点之间最小时间间隔
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
+        //
+        ////2.1 开启检查点
+        //env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE); // 2022/7/15 19:54 exactly once表示底层barrier是否对齐
+        ////2.5 设置重启策略
+        //env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30), Time.seconds(3)));
+        //
+        //
+        ////存储
+        ////2.6 设置状态后端, 即主要设置本地状态保存在哪里
+        ///*
+        // 2022/7/13 20:24 状态后端
+        // 区别
+        //    hash, **本地状态**完全在内存中, 快而小
+        //    rocksdb, **本地状态**完全在在job mananger的文件系统中(固态或磁盘), 慢而大
+        //*/
+        //
+        //
+        ////env.setStateBackend(new EmbeddedRocksDBStateBackend()); // 使用Rocksdb, 需要引入相关依赖
+        //env.setStateBackend(new HashMapStateBackend());
+        //
+        ///*
+        // 2022/7/13 20:59 设置持久化存储位置, 速度
+        //*/
+        //
+        //env.getCheckpointConfig().setCheckpointStorage(GmallConfig_m.CHECK_POINT_STORAGE);
+        //System.setProperty("HADOOP_USER_NAME","atguigu");
+        ////2.3 job取消之后，检查点是否保留
+        //env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        //
+        ////2.2 检查点超时时间, 60s
+        //env.getCheckpointConfig().setCheckpointTimeout(60000L);
+        ////2.4 两个检查点之间最小时间间隔
+        //env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
 
         
         //TODO 3.从Kafka的topic_db中读取业务数据
@@ -182,7 +182,8 @@ public class DimSinkApp_m_0629 {
                 }
             }
         );
-        filterDS.print(">>>>");
+        filterDS.print("5.对读取的数据进行简单的ETL-----主流>>>>");
+        // 2022/7/17 10:20 NOTE hbase出了问题
         //
         //TODO 6.使用FlinkCDC读取配置表数据---配置流
         MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
@@ -199,7 +200,7 @@ public class DimSinkApp_m_0629 {
 
         DataStreamSource<String> mySQLDS = env
             .fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), "MySQL Source");
-        mySQLDS.print(">>>>");
+        mySQLDS.print("6.使用FlinkCDC读取配置表数据---配置流>>>>");
 
         //TODO 7.将配置流进行广播  ---广播流
         MapStateDescriptor<String, TableProcess> mapStateDescriptor
@@ -214,7 +215,7 @@ public class DimSinkApp_m_0629 {
             new TableProcessFunction(mapStateDescriptor)
         );
 
-        dimDS.print(">>>>");
+        dimDS.print("10.将维度数据写到phoenix表中>>>>");
 
         //TODO 10.将维度数据写到phoenix表中
         dimDS.addSink(new DimSinkFunction());

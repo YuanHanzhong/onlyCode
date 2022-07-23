@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.gmall.realtime.util.DateFormatUtil;
 import com.atguigu.gmall.realtime.util.MyKafkaUtil;
+import com.atguigu.gmall.realtime.util.MyKafkaUtil_m_0712_v1;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
@@ -248,6 +249,7 @@ public class DwdTrafficBaseLogSplit {
 
 
         //TODO 7.将不同流的数据写到kafka的不同的主题中  作为事实表
+        pageLogDS.addSink(MyKafkaUtil_m_0712_v1.getKafkaProducer("dwd_traffic_page_log"));
         pageLogDS.addSink(MyKafkaUtil.getKafkaProducer("dwd_traffic_page_log"));
         errDS.addSink(MyKafkaUtil.getKafkaProducer("dwd_traffic_error_log"));
         startDS.addSink(MyKafkaUtil.getKafkaProducer("dwd_traffic_start_log"));

@@ -61,4 +61,3 @@ public class TradeUserSpuOrderBean {
     // 时间戳
     Long ts;
 }
-

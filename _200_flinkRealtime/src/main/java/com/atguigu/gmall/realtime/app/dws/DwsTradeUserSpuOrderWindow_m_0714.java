@@ -1,19 +1,32 @@
 package com.atguigu.gmall.realtime.app.dws;
 
 import com.alibaba.fastjson.JSONObject;
+import com.atguigu.gmall.realtime.app.func.DimAsyncFunction;
+import com.atguigu.gmall.realtime.bean.TradeUserSpuOrderBean;
+import com.atguigu.gmall.realtime.util.DateFormatUtil;
+import com.atguigu.gmall.realtime.util.MyClickHouseUtil;
 import com.atguigu.gmall.realtime.util.MyKafkaUtil;
+import com.atguigu.gmall.realtime.util.TimestampLtz3CompareUtil;
+import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.state.ValueState;
 
 import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.streaming.api.datastream.DataStreamSource;
-import org.apache.flink.streaming.api.datastream.KeyedStream;
-import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.datastream.*;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
 import org.apache.flink.streaming.api.functions.ProcessFunction;
+import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.util.Collector;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Desc: 交易域用户-SPU维度聚合统计
@@ -31,7 +44,15 @@ import org.apache.flink.util.Collector;
             先搭框架, 再填细节
             先写容易玩的地方
             报大片的红, 包导错了, 泛型写错了
+            
+GOT windowall 的并行度总为1, 再没有keyby的情况下使用
+GOT 独立用户, 就用状态编程
+NOTE 统计独立用户数时, 不需要去重
+GOT 目前考虑性能: 落盘, 网络传输
 
+关联优化
+    旁路缓存
+    异步IO
 
         
     */
@@ -72,6 +93,7 @@ public class DwsTradeUserSpuOrderWindow_m_0714 {
         //    "row_op_ts": "2022-07-14 08:01:37.536Z"
         //}
     
+        // NOTE 转化为JSON, 一是为了方便取出属性, 二是自然会过滤掉null
         SingleOutputStreamOperator<JSONObject> jsonObjDStream = source.map(JSONObject :: parseObject); // 为空的过滤掉了
         KeyedStream<JSONObject, String> keyedJsonObjDS = jsonObjDStream.keyBy(jsonObject -> jsonObject.getString("id"));
         keyedJsonObjDS.print("keyedJsonObjDS-->");
@@ -108,21 +130,22 @@ public class DwsTradeUserSpuOrderWindow_m_0714 {
                 );
             }
         
+            // GOT 见名之意, 用起来, 省很多脑子
             @Override
-            public void processElement(JSONObject currentValue, Context ctx, Collector<JSONObject> out) throws Exception {
+            public void processElement(JSONObject currentStatusValue, Context ctx, Collector<JSONObject> out) throws Exception {
             
                 // 第一次到来(value()为null), 注册定时器, 并更新状态值
                 if (lastValueState.value() == null) {
                     long currentProcessingTime = ctx.timerService().currentProcessingTime();
-                    ctx.timerService().registerProcessingTimeTimer(currentProcessingTime + 5000L);
-                    lastValueState.update(currentValue);
+                    ctx.timerService().registerProcessingTimeTimer(currentProcessingTime + 5000L); // 注意给5秒的延迟
+                    lastValueState.update(currentStatusValue);
                 } else {
                     // 解决乱序的情况
                     String lastRowOpTs = lastValueState.value().getString("row_op_ts");
-                    String currentRowOpTs = currentValue.getString("row_op_ts");
+                    String currentRowOpTs = currentStatusValue.getString("row_op_ts");
                     // 反正就是要大的
-                    if (lastRowOpTs.compareTo(currentRowOpTs) < 0) {
-                        lastValueState.update(currentValue);
+                    if (TimestampLtz3CompareUtil.compare(lastRowOpTs, currentRowOpTs)<=0) {
+                        lastValueState.update(currentStatusValue);
                     }
                 }
             
@@ -132,7 +155,7 @@ public class DwsTradeUserSpuOrderWindow_m_0714 {
             @Override
             public void onTimer(long timestamp, OnTimerContext ctx, Collector<JSONObject> out) throws Exception {
             
-                // 给个机会, 如果第二条数据过来比较及时, 就收集
+                // 一定会收集数据的
                 if (lastValueState.value() != null) { // NOTE 这里是 .value()
                     out.collect(lastValueState.value());
                 }
@@ -141,8 +164,27 @@ public class DwsTradeUserSpuOrderWindow_m_0714 {
             }
         });
         
-        processDS.print("processDS-->");
-        
+        processDS.print("processedDS-->");
+    
+    
+        //TODO 8.补充参与分组聚合的维度
+       /* tradeUserSpuDS.map(
+            new MapFunction<TradeUserSpuOrderBean, TradeUserSpuOrderBean>() {
+                @Override
+                public TradeUserSpuOrderBean map(TradeUserSpuOrderBean tradeUserSpuOrderBean) throws Exception {
+                    String skuId = tradeUserSpuOrderBean.getSkuId();
+                    DruidDataSource dataSource = DruidDSUtil.createDataSource();
+                    DruidPooledConnection conn = dataSource.getConnection();
+                    JSONObject dimInfoJsonObj = DimUtil.getDimInfo(conn,"dim_sku_info", Tuple2.of("id",skuId));
+                    tradeUserSpuOrderBean.setSpuId(dimInfoJsonObj.getString("SPU_ID"));
+                    tradeUserSpuOrderBean.setCategory3Id(dimInfoJsonObj.getString("CATEGORY3_ID"));
+                    tradeUserSpuOrderBean.setTrademarkId(dimInfoJsonObj.getString("TM_ID"));
+                    return tradeUserSpuOrderBean;
+                }
+            }
+        );*/
+    
+    
         executionEnvironment.execute();
     }
 }

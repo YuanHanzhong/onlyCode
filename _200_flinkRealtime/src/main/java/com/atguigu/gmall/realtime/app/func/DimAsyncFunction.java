@@ -22,6 +22,10 @@ import java.util.concurrent.ExecutorService;
  *      在父类中定义完成某一天功能的核心算法的骨架(步骤)，具体的实现延迟到子类中去完成
  *      在不改变父类核心算法骨架的前提下，每一个子类都可以有自己不同的实现
  */
+// 2022/7/16 11:43 NOTE
+
+
+// 2022/7/16 11:44 NOTE 放着写死, 用参数, 用泛型
 public abstract class DimAsyncFunction<T> extends RichAsyncFunction<T, T> implements DimJoinFunction<T>{
 
     private ExecutorService executorService;
@@ -35,6 +39,8 @@ public abstract class DimAsyncFunction<T> extends RichAsyncFunction<T, T> implem
 
     @Override
     public void open(Configuration parameters) throws Exception {
+        // 2022/7/16 11:47 NOTE 初始化线程池对象
+        // 2022/7/16 11:47 NOTE STAR 面向抽象编程, 不要面向具体
         executorService = ThreadPoolUtil.getInstance();
         dataSource = DruidDSUtil.createDataSource();
     }
@@ -42,13 +48,13 @@ public abstract class DimAsyncFunction<T> extends RichAsyncFunction<T, T> implem
     @Override
     public void asyncInvoke(T obj, ResultFuture<T> resultFuture) throws Exception {
         //开启多个线程，发送异步请求
-        executorService.submit(
+        executorService.submit( // 相当于run
             new Runnable() {
                 @Override
-                public void run() {
+                public void run() { // 具体的代码
                     Connection conn = null;
                     try {
-                        //1.从流中的对象上获取要关联的维度的主键
+                        //1.拿到维度的主键
                         String key = getKey(obj);
                         //2.根据主键到维度表中获取维度对象
                         conn = dataSource.getConnection();

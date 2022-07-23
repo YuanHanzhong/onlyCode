@@ -29,7 +29,7 @@ public class DimSinkFunction extends RichSinkFunction<JSONObject> {
     }
 
     //将流中的数据，保存到phoenix不同的维度表中
-    // jonObj:  {"tm_name":"xzls11","sink_table":"dim_base_trademark","id":12}
+    // jonObj: {"tm_name":"xzls11","sink_table":"dim_base_trademark","id":12}
     @Override
     public void invoke(JSONObject jsonObj, Context context) throws Exception {
 
@@ -40,7 +40,8 @@ public class DimSinkFunction extends RichSinkFunction<JSONObject> {
         jsonObj.remove("sink_table");
 
         String type = jsonObj.getString("type");
-        jsonObj.remove("type");
+        
+        jsonObj.remove("type"); // 2022/7/16 10:33 NOTE 不需要这个类型, 去掉
 
         String upsertSQL = "upsert into " + GmallConfig.PHOENIX_SCHEMA + "." + tableName
             + "(" + StringUtils.join(jsonObj.keySet(), ",") + ") " +
@@ -52,7 +53,8 @@ public class DimSinkFunction extends RichSinkFunction<JSONObject> {
         Connection conn =  druidDataSource.getConnection();
         //调用向Phoenix表中插入数据的方法
         PhoenixUtil.executeSQL(upsertSQL,conn);
-
+    
+        // 2022/7/16 10:32 NOTE P1 优化, 666
         //如果维度数据发生了upsert,清除Redis中缓存的维度数据
         if("update".equals(type)){
             DimUtil.deleteCached(tableName,jsonObj.getString("id"));

@@ -197,7 +197,7 @@ public class DwsTradeProvinceOrderWindow {
 
 
         //TODO 13.将聚合结果写到ClickHouse数据库中
-        withProvinceDS.print(">>>>");
+        withProvinceDS.print("13.将聚合结果写到ClickHouse数据库中>>>>");
         withProvinceDS.addSink(
             MyClickHouseUtil.getJdbcSink("insert into dws_trade_province_order_window values(?,?,?,?,?,?,?)")
         );

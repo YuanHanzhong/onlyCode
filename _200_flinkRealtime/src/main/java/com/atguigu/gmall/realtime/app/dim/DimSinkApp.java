@@ -7,6 +7,7 @@ import com.atguigu.gmall.realtime.app.func.DimSinkFunction;
 import com.atguigu.gmall.realtime.app.func.TableProcessFunction;
 import com.atguigu.gmall.realtime.bean.TableProcess;
 import com.atguigu.gmall.realtime.util.MyKafkaUtil;
+import com.atguigu.gmall.realtime.util.MyKafkaUtil_m_0712_v1;
 import com.ververica.cdc.connectors.mysql.source.MySqlSource;
 import com.ververica.cdc.connectors.mysql.table.StartupOptions;
 import com.ververica.cdc.debezium.JsonDebeziumDeserializationSchema;
@@ -92,25 +93,25 @@ public class DimSinkApp {
         //1.2 设置并行度
         env.setParallelism(4);
 
-        //TODO 2.检查点相关的设置
-        //2.1 开启检查点
-        env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
-        //2.2 检查点超时时间
-        env.getCheckpointConfig().setCheckpointTimeout(60000L);
-        //2.3 job取消之后，检查点是否保留
-        env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-        //2.4 两个检查点之间最小时间间隔
-        env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
-        //2.5 设置重启策略
-        //env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3,3000L));
-        env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30), Time.seconds(3)));
-        //2.6 设置状态后端
-        env.setStateBackend(new HashMapStateBackend());
-        //env.getCheckpointConfig().setCheckpointStorage(new JobManagerCheckpointStorage());
-        env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop102:8020/gmall/ck");
-
-        //2.7 设置操作hdfs的用户
-        System.setProperty("HADOOP_USER_NAME","atguigu");
+        ////TODO 2.检查点相关的设置
+        ////2.1 开启检查点
+        //env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
+        ////2.2 检查点超时时间
+        //env.getCheckpointConfig().setCheckpointTimeout(60000L);
+        ////2.3 job取消之后，检查点是否保留
+        //env.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        ////2.4 两个检查点之间最小时间间隔
+        //env.getCheckpointConfig().setMinPauseBetweenCheckpoints(2000L);
+        ////2.5 设置重启策略
+        ////env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3,3000L));
+        //env.setRestartStrategy(RestartStrategies.failureRateRestart(3, Time.days(30), Time.seconds(3)));
+        ////2.6 设置状态后端
+        //env.setStateBackend(new HashMapStateBackend());
+        ////env.getCheckpointConfig().setCheckpointStorage(new JobManagerCheckpointStorage());
+        //env.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop102:8020/gmall/ck");
+        //
+        ////2.7 设置操作hdfs的用户
+        //System.setProperty("HADOOP_USER_NAME","atguigu");
 
         //TODO 3.从Kafka的topic_db中读取业务数据
         //3.1 声明消费的主题以及消费者组
@@ -118,6 +119,7 @@ public class DimSinkApp {
         String groupId = "dim_sink_group";
 
         //3.2 创建消费者对象
+        //FlinkKafkaConsumer<String> kafkaConsumer = MyKafkaUtil_m_0712_v1.getKafkaConsumer(topic, groupId);
         FlinkKafkaConsumer<String> kafkaConsumer = MyKafkaUtil.getKafkaConsumer(topic, groupId);
 
         //3.3 消费数据 封装为流
@@ -125,7 +127,8 @@ public class DimSinkApp {
 
         //TODO 4.对读取的数据进行类型转换       jsonstr->jsonObj
         // NOTE json的来源
-        /*//匿名内部类
+        /*
+        //匿名内部类
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(
             new MapFunction<String, JSONObject>() {
                 @Override
@@ -153,7 +156,7 @@ public class DimSinkApp {
                 public boolean filter(JSONObject jsonObj) throws Exception {
                     try {
                         String dataJsonStr = jsonObj.getString("data");
-                        JSONValidator.from(dataJsonStr).validate();
+                        //JSONValidator.from(dataJsonStr).validate(); // 这里多个一行
                         if(jsonObj.getString("type").equals("bootstrap-start")||jsonObj.getString("type").equals("bootstrap-complete")){
                             return  false;
                         }
@@ -164,7 +167,7 @@ public class DimSinkApp {
                 }
             }
         );
-        filterDS.print(">>>>");
+        filterDS.print("5.对读取的数据进行简单的ETL>>>>");
 
         //TODO 6.使用FlinkCDC读取配置表数据---配置流
         MySqlSource<String> mySqlSource = MySqlSource.<String>builder()
@@ -181,7 +184,7 @@ public class DimSinkApp {
 
         DataStreamSource<String> mySQLDS = env
             .fromSource(mySqlSource, WatermarkStrategy.noWatermarks(), "MySQL Source");
-        mySQLDS.print(">>>>");
+        mySQLDS.print("6.使用FlinkCDC读取配置表数据---配置流>>>>");
 
         //TODO 7.将配置流进行广播  ---广播流
         MapStateDescriptor<String, TableProcess> mapStateDescriptor
@@ -196,7 +199,7 @@ public class DimSinkApp {
             new TableProcessFunction(mapStateDescriptor)
         );
 
-        dimDS.print(">>>>");
+        dimDS.print("10.将维度数据写到phoenix表中>>>>");
 
         //TODO 10.将维度数据写到phoenix表中
         dimDS.addSink(new DimSinkFunction());

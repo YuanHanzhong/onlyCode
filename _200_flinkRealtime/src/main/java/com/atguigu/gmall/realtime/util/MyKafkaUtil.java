@@ -58,7 +58,7 @@ public class MyKafkaUtil {
     public static FlinkKafkaProducer<String> getKafkaProducer(String topic) {
         Properties props = new Properties();
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
-        props.setProperty(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 15 * 60 * 1000 + "");
+        props.setProperty(ProducerConfig.TRANSACTION_TIMEOUT_CONFIG, 15 * 60 * 1000 + ""); //
 
         FlinkKafkaProducer<String> kafkaProducer = new FlinkKafkaProducer<>("default_topic", new KafkaSerializationSchema<String>() {
             @Override
@@ -69,6 +69,9 @@ public class MyKafkaUtil {
         return kafkaProducer;
     }
 
+    
+    
+    
     //获取kafka连接器相关连接属性
     public static String getKafkaDDL(String topic, String groupId) {
         return "WITH (\n" +

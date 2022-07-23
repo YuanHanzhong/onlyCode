@@ -57,8 +57,8 @@ public class SensorSource_my implements SourceFunction<SensorReading_my> {
             myDataList.add(5D);
             myDataList.add(5D);
             
-            // ASK 什么时候不需要设置水位线, 只要用的窗口或者定时器都要水位线吗?
-            // ASK kafka中最后一部分数据处理不了, 那些数据正好是自动添加的最后一个水位线之后的数据吧? 这些数据会在run()结束后, 立刻被丢弃吗?
+            // 什么时候不需要设置水位线, 只要用的窗口或者定时器都要水位线吗?
+            //  kafka中最后一部分数据处理不了, 那些数据正好是自动添加的最后一个水位线之后的数据吧? 这些数据会在run()结束后, 立刻被丢弃吗?
             
             //
             for (Double aDouble : myDataList) {

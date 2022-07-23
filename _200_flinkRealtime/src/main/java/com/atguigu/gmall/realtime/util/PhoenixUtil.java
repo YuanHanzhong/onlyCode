@@ -46,7 +46,6 @@ public class PhoenixUtil {
             }
         }
     }
-
     /*
         从Phoenix表中查询数据
         +-----+------------+

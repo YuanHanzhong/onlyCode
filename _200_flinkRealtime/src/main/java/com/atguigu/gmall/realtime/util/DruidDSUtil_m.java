@@ -11,6 +11,7 @@ import com.atguigu.gmall.realtime.common.GmallConfig;
 public class DruidDSUtil_m {
     private static volatile DruidDataSource druidDataSource;
 
+    // P3 练习德鲁伊和JDBC
     public static DruidDataSource createDataSource(){
         if(druidDataSource == null){
             synchronized(DruidDSUtil_m.class){

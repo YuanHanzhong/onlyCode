@@ -48,9 +48,6 @@ public class DwsUserUserLoginWindow_m_0713 {
         DataStreamSource<String> kafkaStrDS = env.addSource(kafkaConsumer);
         
         //2. 转换数据, 方便后续使用
-        /*
-         2022/7/13 9:38 P2 当字段不一样的时候如何解析
-        */
         SingleOutputStreamOperator<JSONObject> jsonObjDS = kafkaStrDS.map(JSON :: parseObject);
         
         //3. 过滤出想要的数据

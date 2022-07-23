@@ -63,7 +63,8 @@ public class TableProcessFunction_m_0628 extends BroadcastProcessFunction<JSONOb
             //在向下游传递数据前，应该补充维度发送的目的地 sink_table
             String sinkTable = tableProcess.getSinkTable();
             dataJsonObj.put("sink_table",sinkTable);
-
+    
+            // 2022/7/16 12:54 NOTE 为了删除旁路缓存中的数据
             String type = jsonObj.getString("type");
             dataJsonObj.put("type",type);
 

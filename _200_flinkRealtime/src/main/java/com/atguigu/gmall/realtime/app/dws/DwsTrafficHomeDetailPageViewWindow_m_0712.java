@@ -156,7 +156,6 @@ public class DwsTrafficHomeDetailPageViewWindow_m_0712 {
         //TODO 9.开窗, 每个key都有可能有, 所以用windowAll
         AllWindowedStream<TrafficHomeDetailPageViewBean, TimeWindow> windowDS
             = uvDS.windowAll(TumblingEventTimeWindows.of(org.apache.flink.streaming.api.windowing.time.Time.seconds(10)));
-        // ASK 怎么写的2022/7/12 16:46 NOTE
 
         //TODO 10.聚合计算
         SingleOutputStreamOperator<TrafficHomeDetailPageViewBean> reduceDS = windowDS.reduce(

@@ -13,7 +13,7 @@ import java.time.Duration;
  * Date: 2022/5/25
  * Desc: 交易域订单预处理事务事实表, 为下单和取消订单服务
  */
-public class DwdTradeOrderPreProcess_m_0708 { // P2 很有含金量, 值得手动实现
+public class DwdTradeOrderPreProcess_m_0708 { // P3 很有含金量, 值得手动实现
     public static void main(String[] args) {
         //TODO 1.基本环境准备
         //1.1 指定流处理环境

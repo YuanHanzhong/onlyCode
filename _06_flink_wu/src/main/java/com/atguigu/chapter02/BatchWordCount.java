@@ -31,7 +31,8 @@ public class BatchWordCount {
                         out.collect(Tuple2.of(word, 1L));
                     }
                 })
-                .returns(Types.TUPLE(Types.STRING, Types.LONG));  //当Lambda表达式使用 Java 泛型的时候, 由于泛型擦除的存在, 需要显示的声明类型信息
+                .returns(Types.TUPLE(Types.STRING, Types.LONG));
+        //当Lambda表达式使用 Java 泛型的时候, 由于泛型擦除的存在, 需要显示的声明类型信息
 
         // 4. 按照 word 进行分组
         UnsortedGrouping<Tuple2<String, Long>> wordAndOneUG = wordAndOne.groupBy(0);
@@ -42,4 +43,3 @@ public class BatchWordCount {
         sum.print();
     }
 }
-
