@@ -40,6 +40,7 @@ public class TableProcessFunction extends BroadcastProcessFunction<JSONObject, S
     public TableProcessFunction(MapStateDescriptor<String, TableProcess> mapStateDescriptor) {
         this.mapStateDescriptor = mapStateDescriptor;
     }
+    
 
     //{"database":"GMALL2022","xid":17734,"data":{"tm_name":"cls","logo_url":"fds","id":12},
     // "commit":true,"type":"insert","table":"base_trademark","ts":1656656361}

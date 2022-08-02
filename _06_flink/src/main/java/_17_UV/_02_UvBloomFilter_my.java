@@ -10,6 +10,8 @@ import org.apache.flink.api.java.tuple.Tuple2;
 
 import org.apache.flink.shaded.guava18.com.google.common.hash.BloomFilter;
 import org.apache.flink.shaded.guava18.com.google.common.hash.Funnels;
+
+
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
@@ -37,7 +39,7 @@ public class _02_UvBloomFilter_my {
         
         SingleOutputStreamOperator<UserBehavior> stream =
           env
-            .readTextFile("D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\UserBehavior.csv")
+            .readTextFile("/Users/jack/code/only-code/_06_flink/src/main/resources/UserBehavior.csv")
             .map(new MapFunction<String, UserBehavior>() {
                 @Override
                 public UserBehavior map(String in) throws Exception {

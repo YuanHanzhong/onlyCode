@@ -33,6 +33,8 @@ public class BatchWordCount {
                 })
                 .returns(Types.TUPLE(Types.STRING, Types.LONG));
         //当Lambda表达式使用 Java 泛型的时候, 由于泛型擦除的存在, 需要显示的声明类型信息
+        // NOTE 2022/9/8 类型擦除, 是为了兼容以前的版本. 擦除的是泛型.
+        
 
         // 4. 按照 word 进行分组
         UnsortedGrouping<Tuple2<String, Long>> wordAndOneUG = wordAndOne.groupBy(0);
