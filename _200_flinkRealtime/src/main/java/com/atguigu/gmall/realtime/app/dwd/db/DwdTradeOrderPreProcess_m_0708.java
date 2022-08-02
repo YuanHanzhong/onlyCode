@@ -63,6 +63,8 @@ public class DwdTradeOrderPreProcess_m_0708 { // P3 很有含金量, 值得手�
             " topic_db\n" +
             "where \n" +
             " `table` = 'order_detail' and `type`='insert'");
+        
+        
         tableEnv.createTemporaryView("order_detail",orderDetail);
         //tableEnv.executeSql("select * from order_detail").print();
 

@@ -24,7 +24,8 @@
         <module>_11_Algorithm</module>
         <module>_06_flink_wu</module>
         <module>_200_flinkRealtime0106</module>
-        <module>_200_flinkRealtime_show</module>
+        <module>_250_flinkRealtime_show</module>
+        <module>_300_eduRealtime</module>
 
     </modules>
 
