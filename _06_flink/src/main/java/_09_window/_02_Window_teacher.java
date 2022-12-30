@@ -68,7 +68,7 @@ public class _02_Window_teacher {
               key,
               // 将迭代器中唯一的元素取出
               elements.iterator().next(),
-              ctx.window().getStart(),
+              ctx.window().  getStart(),
               ctx.window().getEnd()
             ));
         }

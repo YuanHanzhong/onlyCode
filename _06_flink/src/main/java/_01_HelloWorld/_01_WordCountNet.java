@@ -15,16 +15,17 @@ public class _01_WordCountNet {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
         executionEnvironment.setParallelism(1);
-    
-        executionEnvironment.enableCheckpointing(1000L, CheckpointingMode.EXACTLY_ONCE);
-        // 2022/7/10 18:53 NOTE GOT 每个应用都建立一个新的checkpoint目录比较好, 容易区分
-        //executionEnvironment.getCheckpointConfig().setCheckpointStorage("file:\\D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\checkpoints\\checkpoint");
-        executionEnvironment.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
-        executionEnvironment.getCheckpointConfig().setMinPauseBetweenCheckpoints(2);
-        executionEnvironment.setStateBackend(new HashMapStateBackend());
-        executionEnvironment.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop102:8020/gmall2022/CheckPoint");
         
-        
+        // GOT 当有检查点的时候, windows下回报各种错.
+        //executionEnvironment.enableCheckpointing(1000L, CheckpointingMode.EXACTLY_ONCE);
+        //// 2022/7/10 18:53  GOT 每个应用都建立一个新的checkpoint目录比较好, 容易区分
+        ////executionEnvironment.getCheckpointConfig().setCheckpointStorage("file:\\D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\checkpoints\\checkpoint");
+        //executionEnvironment.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
+        //executionEnvironment.getCheckpointConfig().setMinPauseBetweenCheckpoints(2);
+        //executionEnvironment.setStateBackend(new HashMapStateBackend());
+        //executionEnvironment.getCheckpointConfig().setCheckpointStorage("hdfs://hadoop102:8020/gmall2022/CheckPoint");
+        //
+        //
         DataStreamSource<String> sourceNet = executionEnvironment.socketTextStream("hadoop102", 9999); // nc -l 9999 来模拟产生数据;
     
     
