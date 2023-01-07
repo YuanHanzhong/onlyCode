@@ -12,8 +12,6 @@
         <module>_01_javaEE</module>
         <module>_02_hadoop</module>
         <module>_03_flume</module>
-        <module>_04_scala</module>
-        <module>_05_spark</module>
         <module>_06_flink</module>
         <module>_07_redis</module>
         <module>_08_hbase</module>
@@ -26,7 +24,8 @@
         <module>_200_flinkRealtime0106</module>
         <module>_250_flinkRealtime_show</module>
         <module>_300_eduRealtime</module>
-
+        <module>_13_designPattern</module>
+        <module>_400_totalManual</module>
     </modules>
 
     <properties>

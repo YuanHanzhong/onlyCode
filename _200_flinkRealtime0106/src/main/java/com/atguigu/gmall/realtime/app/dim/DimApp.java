@@ -92,6 +92,7 @@ public class DimApp {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         //1.2 设置并行度
         env.setParallelism(4);
+        
         /*//TODO 2.检查点相关设置
         //2.1 开启检查点
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
