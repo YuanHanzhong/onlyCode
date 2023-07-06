@@ -93,6 +93,11 @@ public class DimApp {
         //1.2 设置并行度
         env.setParallelism(4);
         
+        // STAR
+        /*
+        * FAS
+        * */
+        
         /*//TODO 2.检查点相关设置
         //2.1 开启检查点
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
@@ -114,6 +119,15 @@ public class DimApp {
 
         //TODO 3.从kafka的topic_db主题中读取业务数据
         //3.1 声明消费的主题以及消费者组
+        /*
+        *
+        *
+        *
+        *
+        *
+        *
+        *
+        * */
         String topic = "topic_db";
         String groupId = "dim_app_group";
         //3.2 创建消费者对象

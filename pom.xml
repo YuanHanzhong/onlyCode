@@ -26,6 +26,7 @@
         <module>_300_eduRealtime</module>
         <module>_13_designPattern</module>
         <module>_400_totalManual</module>
+        <module>_02_hive</module>
     </modules>
 
     <properties>

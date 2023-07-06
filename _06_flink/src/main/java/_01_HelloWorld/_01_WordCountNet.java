@@ -17,7 +17,7 @@ public class _01_WordCountNet {
         executionEnvironment.setParallelism(1);
         
         // GOT 当有检查点的时候, windows下回报各种错.
-        //executionEnvironment.enableCheckpointing(1000L, CheckpointingMode.EXACTLY_ONCE);
+        // executionEnvironment.enableCheckpointing(1000L, CheckpointingMode.EXACTLY_ONCE);
         //// 2022/7/10 18:53  GOT 每个应用都建立一个新的checkpoint目录比较好, 容易区分
         ////executionEnvironment.getCheckpointConfig().setCheckpointStorage("file:\\D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\checkpoints\\checkpoint");
         //executionEnvironment.getCheckpointConfig().enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
