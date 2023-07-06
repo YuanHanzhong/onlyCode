@@ -10,7 +10,6 @@ import org.junit.Test;
 
 public class Array {
     public static void main(String[] args) {
-    
     }
     
     @Test
