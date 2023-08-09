@@ -15,7 +15,7 @@ object Spark02_RDD_Instance_Disk {
         // textFile方法可以传递一个参数，参数表示文件路径（可以使用逗号分隔多个路径）
         // textFile方法可以传递一个参数，参数可以为路径的名称
         // textFile方法可以传递一个参数，参数可以使用通配符
-        //val rdd1: RDD[String] = sc.textFile("data/word.txt,data/word1.txt")
+        //val rdd1: RDD[String] = sc.textFile("_04_sparkTest/data/word.txt,data/word1.txt")
         //val rdd2: RDD[String] = sc.textFile("data")
         //val rdd3: RDD[String] = sc.textFile("data/word*.txt")
         // 如果想要获取文件内容的同时关联文件本身，那么需要采用其他方法

@@ -10,13 +10,13 @@ object Spark01_RDD_Persist {
         val conf = new SparkConf().setMaster("local").setAppName("WordCount")
         val sc = new SparkContext(conf)
 
-        val lines = sc.textFile("data/word.txt")
+        val lines = sc.textFile("_04_sparkTest/data/word.txt")
         val words = lines.flatMap(_.split(" "))
         val wordToOne = words.map((_, 1))
         val wordToCount = wordToOne.reduceByKey(_+_)
         wordToCount.saveAsTextFile("output")
 
-        val lines1 = sc.textFile("data/word.txt")
+        val lines1 = sc.textFile("_04_sparkTest/data/word.txt")
         val words1 = lines1.flatMap(_.split(" "))
         val wordToOne1 = words1.map((_, 1))
         val groupWord = wordToOne1.groupByKey()

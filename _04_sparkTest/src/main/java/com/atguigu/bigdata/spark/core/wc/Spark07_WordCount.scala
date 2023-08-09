@@ -16,7 +16,7 @@ object Spark07_WordCount {
         val sc = new SparkContext(conf)
 
         // 缺什么， 补什么？
-        sc.textFile("data/word.txt")
+        sc.textFile("_04_sparkTest/data/word.txt")
             .flatMap(_.split(" "))
             .map((_, 1))
             .reduceByKey(_+_)
