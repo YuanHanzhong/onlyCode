@@ -32,7 +32,7 @@ public class _01_UV {
         
         SingleOutputStreamOperator<UserBehavior> stream =
           env
-            .readTextFile("/Users/jack/code/only-code/_06_flink/src/main/resources/UserBehavior.csv")
+            .readTextFile("D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\UserBehavior.csv")
             .map(new MapFunction<String, UserBehavior>() {
                 @Override
                 public UserBehavior map(String in) throws Exception {

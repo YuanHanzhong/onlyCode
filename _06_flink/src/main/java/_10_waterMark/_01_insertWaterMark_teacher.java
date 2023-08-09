@@ -42,6 +42,8 @@ public class _01_insertWaterMark_teacher {
                   );
               }
           })
+          
+          
           // 在map算子输出的数据流中插入水位线事件
           // 默认每隔200ms插入一次水位线事件
           .assignTimestampsAndWatermarks(
@@ -54,6 +56,8 @@ public class _01_insertWaterMark_teacher {
                   }
               })
           )
+          
+          
           .keyBy(r -> r.f0)
           .window(TumblingEventTimeWindows.of(Time.seconds(10)))
           //.window(TumblingEventTimeWindows.of(Duration.ofSeconds(10)))

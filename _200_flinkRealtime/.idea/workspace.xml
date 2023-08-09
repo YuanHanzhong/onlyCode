@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="616ffe7a-225e-45d5-84b3-7d3f618f74a1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/readme_flink_realtime.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/app/dim/DimApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/app/func/DimSinkFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/common/GmallConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/util/PhoenixUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_01_javaEE/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../_01_javaEE/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_redis/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_redis/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_07_redis/src/main/java/_0_TestJedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_07_redis/src/main/java/_0_TestJedis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_100_flink实时数仓.md" beforeDir="false" afterPath="$PROJECT_DIR$/../_100_flink实时数仓.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_11_Algorithm/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../_11_Algorithm/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/app/dim/DimApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/app/dim/checklist.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/app/dim/checklist.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/app/func/TableProcessFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/app/func/TableProcessFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/bean/TableProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/bean/TableProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/common/GmallConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/utils/DruidDSUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/util/DruidDSUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/realtime/utils/MyKafkaUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atguigu/gmall/realtime/util/MyKafkaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+    <option name="PARALLEL_COMPILATION" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadAnnotationsAutomatically" value="true" />
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="jdkForImporter" value="jdk-8.0.131" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="2BLap5NRHrprYCR3gRW04lLxjsY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="scala_project_settings_configurable.last_selected_tab_index" value="7" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
+  </component>
+  <component name="RunManager">
+    <configuration name="DimApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.atguigu.gmall.realtime.app.dim.DimApp" />
+      <module name="_200_flinkRealtime" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.atguigu.gmall.realtime.app.dim.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DimApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ScalaProjectSettings">
+    <option name="customScalatestSyntaxHighlighting" value="true" />
+    <option name="includeBlockExpressions" value="true" />
+    <option name="includeLiterals" value="true" />
+    <option name="showArgumentsToByNameParams" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+    <option name="myConnectionType" value="NONE" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="616ffe7a-225e-45d5-84b3-7d3f618f74a1" name="Default Changelist" comment="" />
+      <created>1656688006519</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656688006519</updated>
+      <workItem from="1656688008574" duration="3552000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

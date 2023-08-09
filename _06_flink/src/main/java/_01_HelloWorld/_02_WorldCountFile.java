@@ -12,11 +12,9 @@ import org.apache.flink.util.Collector;
 public class _02_WorldCountFile {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
-    
-        // 生产环境不设置全局并行度, 因为不容易调试
         executionEnvironment.setParallelism(1);
     
-        DataStreamSource<String> source = executionEnvironment.readTextFile("/Users/jack/code/only-code/_06_flink/src/main/resources/test.txt");
+        DataStreamSource<String> source = executionEnvironment.readTextFile("D:\\code\\only_code\\_06_flink\\src\\main\\resources\\test.txt");
         SingleOutputStreamOperator<Tuple2<String, Integer>> mappedSource = source.flatMap(
           new FlatMapFunction<String, Tuple2<String, Integer>>()    {
               @Override
@@ -25,7 +23,6 @@ public class _02_WorldCountFile {
                   for (String word : words) {
                       out.collect(Tuple2.of(word, 1));
                   }
-              
               }
           }
         );

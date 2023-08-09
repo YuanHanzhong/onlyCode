@@ -26,9 +26,13 @@ GOT
  */
 public class _01_Window_countUV_my {
     public static void main(String[] args) throws Exception {
+        
+        // 设计环境变量2+1
+        
         StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
         executionEnvironment.setParallelism(1);
         
+        // 具体设置, 添加源,
         executionEnvironment
           .addSource(new ClickSource_my())
           .keyBy(r -> r.username)

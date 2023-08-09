@@ -13,7 +13,6 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.types.Row;
 
 import java.time.Duration;
-import java.time.ZoneId;
 
 import static org.apache.flink.table.api.Expressions.$;
 
@@ -22,28 +21,29 @@ public class _01_SQLStream {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         
-        SingleOutputStreamOperator<UserBehavior> stream = env
-                                                            .readTextFile("D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\UserBehavior.csv")
-                                                            .map(new MapFunction<String, UserBehavior>() {
-                                                                @Override
-                                                                public UserBehavior map(String in) throws Exception {
-                                                                    String[] array = in.split(",");
-                                                                    return new UserBehavior(
-                                                                      array[0], array[1], array[2], array[3],
-                                                                      Long.parseLong(array[4]) * 1000L
-                                                                    );
-                                                                }
-                                                            })
-                                                            .filter(r -> r.type.equals("pv"))
-                                                            .assignTimestampsAndWatermarks(
-                                                              WatermarkStrategy.<UserBehavior>forBoundedOutOfOrderness(Duration.ofSeconds(0))
-                                                                .withTimestampAssigner(new SerializableTimestampAssigner<UserBehavior>() {
-                                                                    @Override
-                                                                    public long extractTimestamp(UserBehavior element, long recordTimestamp) {
-                                                                        return element.ts;
-                                                                    }
-                                                                })
-                                                            );
+        SingleOutputStreamOperator<UserBehavior> stream =
+          env
+            .readTextFile("D:\\onedrive\\01_正吸收\\014_专业\\only_code\\_06_flink\\src\\main\\resources\\UserBehavior.csv")
+            .map(new MapFunction<String, UserBehavior>() {
+                @Override
+                public UserBehavior map(String in) throws Exception {
+                    String[] array = in.split(",");
+                    return new UserBehavior(
+                      array[0], array[1], array[2], array[3],
+                      Long.parseLong(array[4]) * 1000L
+                    );
+                }
+            })
+            .filter(r -> r.type.equals("pv"))
+            .assignTimestampsAndWatermarks(
+              WatermarkStrategy.<UserBehavior>forBoundedOutOfOrderness(Duration.ofSeconds(0))
+                .withTimestampAssigner(new SerializableTimestampAssigner<UserBehavior>() {
+                    @Override
+                    public long extractTimestamp(UserBehavior element, long recordTimestamp) {
+                        return element.ts;
+                    }
+                })
+            );
         
         // 获取表执行环境
         StreamTableEnvironment streamTableEnvironment = StreamTableEnvironment
@@ -51,7 +51,7 @@ public class _01_SQLStream {
                                                             env,
                                                             EnvironmentSettings.newInstance().inStreamingMode().build()
                                                           );
-
+        
         // 将数据流转换成动态表
         Table table = streamTableEnvironment
                         .fromDataStream(
