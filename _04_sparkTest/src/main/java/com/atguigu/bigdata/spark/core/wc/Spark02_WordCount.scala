@@ -10,7 +10,7 @@ object Spark02_WordCount {
         val conf = new SparkConf().setMaster("local").setAppName("WordCount")
         val sc = new SparkContext(conf)
 
-        val lines = sc.textFile("_04_sparkTest/_04_sparkTest/data/word.txt")
+        val lines = sc.textFile("_04_sparkTest/data/word.txt")
         val words = lines.flatMap(_.split(" "))
         val wordGroup = words.groupBy(word => word)
         val wordCount = wordGroup.mapValues(_.size)
