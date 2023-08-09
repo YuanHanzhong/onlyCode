@@ -27,6 +27,8 @@
         <module>_13_designPattern</module>
         <module>_400_totalManual</module>
         <module>_02_hive</module>
+        <module>_04_spark</module>
+        <module>_04_scalaTest</module>
     </modules>
 
     <properties>
