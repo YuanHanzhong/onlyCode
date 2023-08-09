@@ -12,7 +12,7 @@ object Spark01_RDD_Dep {
         val sc = new SparkContext(conf)
 
         // 缺什么， 补什么？
-        val fileRDD: RDD[String] = sc.textFile("data/word.txt")
+        val fileRDD: RDD[String] = sc.textFile("_04_sparkTest/data/word.txt")
         println(fileRDD.toDebugString)
         println("****************************************")
         val wordRDD: RDD[String] = fileRDD.flatMap(_.split(" "))

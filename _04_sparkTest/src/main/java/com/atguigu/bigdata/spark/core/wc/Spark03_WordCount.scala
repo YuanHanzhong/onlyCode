@@ -17,7 +17,7 @@ object Spark03_WordCount {
         //      ../   ./
         //     IDEA中默认的基准路径为项目的根路径，可以改
         println(System.getProperty("user.dir"))
-        val lines = sc.textFile("data/word.txt")
+        val lines = sc.textFile("_04_sparkTest/data/word.txt")
         val words = lines.flatMap(_.split(" "))
         val wordGroup = words.groupBy(word => word)
         val wordCount = wordGroup.mapValues(_.size)

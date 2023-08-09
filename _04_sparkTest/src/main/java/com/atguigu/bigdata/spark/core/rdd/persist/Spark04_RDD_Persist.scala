@@ -11,7 +11,7 @@ object Spark04_RDD_Persist {
         val sc = new SparkContext(conf)
         sc.setCheckpointDir("cp")
 
-        val lines = sc.textFile("data/word.txt")
+        val lines = sc.textFile("_04_sparkTest/data/word.txt")
         val words = lines.flatMap(_.split(" "))
         val wordToOne = words.map(
             word => {

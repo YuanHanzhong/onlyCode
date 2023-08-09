@@ -12,7 +12,7 @@ object Spark08_WordCount {
         val sc = new SparkContext(conf)
 
         // 缺什么， 补什么？
-        val lineRDD: RDD[String] = sc.textFile("data/word.txt")
+        val lineRDD: RDD[String] = sc.textFile("_04_sparkTest/data/word.txt")
         val wordRDD: RDD[String] = lineRDD.flatMap(_.split(" "))
         val wordToOneRDD: RDD[(String, Int)] = wordRDD.map(
             word => {
@@ -21,7 +21,7 @@ object Spark08_WordCount {
             })
         val wordToCountRDD: RDD[(String, Int)]  = wordToOneRDD.reduceByKey(_+_)
         val tuples: Array[(String, Int)] = wordToCountRDD.collect()
-        //tuples.foreach(println)
+        tuples.foreach(println)
 
         sc.stop()
 
