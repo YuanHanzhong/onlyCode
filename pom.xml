@@ -13,6 +13,10 @@
         <module>_02_hadoop</module>
         <module>_03_flume</module>
         <module>_06_flink</module>
+        <module>_06_flink_wu</module>
+        <module>_06_flink_my</module>
+        <module>_06_flink_wu_my</module>
+        <module>_06_flink_tuning</module>
         <module>_07_redis</module>
         <module>_08_hbase</module>
         <module>_09_phoenix_thin</module>
@@ -20,7 +24,7 @@
         <module>_10_es</module>
         <module>_200_flinkRealtime</module>
         <module>_11_Algorithm</module>
-        <module>_06_flink_wu</module>
+
         <module>_200_flinkRealtime0106</module>
         <module>_250_flinkRealtime_show</module>
         <module>_300_eduRealtime</module>
