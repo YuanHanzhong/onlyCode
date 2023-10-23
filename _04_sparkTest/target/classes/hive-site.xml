@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- jdbc连接的URL -->
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value>jdbc:mysql://hadoop102:3306/metastore?useSSL=false</value>
+    </property>
+
+    <!-- jdbc连接的Driver-->
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.jdbc.Driver</value>
+    </property>
+
+    <!-- jdbc连接的username-->
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>root</value>
+    </property>
+
+    <!-- jdbc连接的password -->
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value>root</value>
+    </property>
+
+    <!-- Hive默认在HDFS的工作目录 -->
+    <property>
+        <name>hive.metastore.warehouse.dir</name>
+        <value>/user/hive/warehouse</value>
+    </property>
+
+    <!-- Hive元数据存储的验证 -->
+    <property>
+        <name>hive.metastore.schema.verification</name>
+        <value>false</value>
+    </property>
+
+    <!-- 元数据存储授权  -->
+    <property>
+        <name>hive.metastore.event.db.notification.api.auth</name>
+        <value>false</value>
+    </property>
+
+    <!-- 指定存储元数据要连接的  地址 -->
+    <property>
+        <name>hive.metastore.uris</name>
+        <value>thrift://hadoop102:9083</value>
+    </property>
+    <!-- 指定hiveserver2连接的host -->
+    <property>
+        <name>hive.server2.thrift.bind.host</name>
+        <value>hadoop102</value>
+    </property>
+
+    <!-- 指定hiveserver2连接的端口号 -->
+    <property>
+        <name>hive.server2.thrift.port</name>
+        <value>10000</value>
+    </property>
+
+    <!-- 打印 当前库 和 表头-->
+    <property>
+        <name>hive.cli.print.header</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hive.cli.print.current.db</name>
+        <value>true</value>
+    </property>
+
+    <!-- 本地模式的设置 -->
+    <property>
+        <name>hive.exec.mode.local.auto</name>
+        <value>true</value>
+        <description>Let Hive determine whether to run in local mode automatically</description>
+    </property>
+    <!--设置local mr的最大输入数据量，当输入数据量小于这个值时采用local mr的方式，默认为134217728，即128M -->
+    <property>
+        <name>hive.exec.mode.local.auto.inputbytes.max</name>
+        <value>134217728</value>
+        <description>When hive.exec.mode.local.auto is true, input bytes should less than this for local mode.</description>
+    </property>
+
+    <!--设置local mr的最大输入文件个数，当输入文件个数小于这个值时采用local mr的方式，默认为4 -->
+    <property>
+        <name>hive.exec.mode.local.auto.input.files.max</name>
+        <value>4</value>
+        <description>When hive.exec.mode.local.auto is true, the number of tasks should less than this for local mode.</description>
+    </property>
+
+
+</configuration>
+
