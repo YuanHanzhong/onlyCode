@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="66f0e9b4-c26b-4054-85db-1af526563213" name="Default Changelist" comment="增加flink调优模块">
       <change beforePath="$PROJECT_DIR$/_01_javaEE/src/main/java/_02_基础语法拓展/_7_获取一个四位数的个位十位百位千位.java" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/src/main/java/_02_基础语法拓展/_7_获取一个四位数的个位十位百位千位.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_02_基础语法拓展/_7_获取一个四位数的个位十位百位千位.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_02_基础语法拓展/_7_获取一个四位数的个位十位百位千位.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +119,7 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.shua">
+  <component name="RunManager" selected="Application._7_获取一个四位数的个位十位百位千位">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -143,12 +144,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Spark02_WordCount" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.bigdata.spark.core.wc.Spark02_WordCount" />
-      <module name="_04_sparkTest" />
+    <configuration name="_7_获取一个四位数的个位十位百位千位" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_02_基础语法拓展._7_获取一个四位数的个位十位百位千位" />
+      <module name="_01_javaEE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.atguigu.bigdata.spark.core.wc.*" />
+          <option name="PATTERN" value="_02_基础语法拓展.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -201,11 +202,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application._7_获取一个四位数的个位十位百位千位" />
         <item itemvalue="Application.shua" />
         <item itemvalue="JUnit.Array.test1" />
         <item itemvalue="Application.Array" />
         <item itemvalue="Scala REPL.Scala REPL" />
-        <item itemvalue="Application.Spark02_WordCount" />
       </list>
     </recent_temporary>
   </component>
@@ -267,7 +268,7 @@
       <workItem from="1691550754368" duration="59000" />
       <workItem from="1691550836280" duration="5706000" />
       <workItem from="1697787155288" duration="4972000" />
-      <workItem from="1698080993159" duration="8768000" />
+      <workItem from="1698080993159" duration="10112000" />
     </task>
     <task id="LOCAL-00001" summary="from mac">
       <option name="closed" value="true" />
