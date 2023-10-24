@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="_04_scalaTest" />
+        <module name="_13_designPattern" />
+        <module name="_06_flink_wu" />
+        <module name="_03_flume" />
+        <module name="_200_flinkRealtime" />
+        <module name="_200_flinkRealtime0106" />
+        <module name="_07_redis" />
+        <module name="_400_totalManual" />
+        <module name="_09_phoenix_thin" />
+        <module name="_09_phonix_thick" />
+        <module name="_11_Algorithm" />
+        <module name="_04_sparkTest" />
+        <module name="_04_spark" />
+        <module name="_10_es" />
+        <module name="_01_javaEE" />
+        <module name="_06_flink_wu_my" />
+        <module name="_06_flink_my" />
+        <module name="_06_flink_tuning" />
+        <module name="_300_eduRealtime" />
+        <module name="_02_hive" />
+        <module name="_06_flink" />
+        <module name="_02_hadoop" />
+        <module name="_08_hbase" />
+        <module name="_250_flinkRealtime_show" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="_04_scala" target="1.8" />
+      <module name="_05_spark" target="1.8" />
+      <module name="_06_flink_wu_m" target="8" />
+      <module name="flink-tuning" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

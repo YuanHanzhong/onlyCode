@@ -1,0 +1,103 @@
+Index: _05_spark/src/main/java/HelloSpark.scala
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>object HelloSpark{\n    def main(args: Array[String]): Unit ={\n        print(\"helloSpark\")\n    }\n}\n
+===================================================================
+diff --git a/_05_spark/src/main/java/HelloSpark.scala b/_05_spark/src/main/java/HelloSpark.scala
+--- a/_05_spark/src/main/java/HelloSpark.scala	
++++ b/_05_spark/src/main/java/HelloSpark.scala	
+@@ -1,5 +1,25 @@
+-object HelloSpark{
+-    def main(args: Array[String]): Unit ={
+-        print("helloSpark")
++
++
++
++
++import org.apache.spark.{SparkConf, SparkContext}
++
++object HelloSpark {
++    
++    def main(args: Array[String]): Unit = {
++        print("Hello Spark")
++        
++        // spark context
++        val conf: SparkConf = new SparkConf().setAppName("Hello Spark").setMaster("local")
++        
++        // spark context
++        val sc = new SparkContext(conf)
++        
++        
++        
++        
++        
++        
++     
+     }
+ }
+Index: _05_spark/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n\n    <groupId>org.example</groupId>\n    <artifactId>_05_spark</artifactId>\n    <version>1.0-SNAPSHOT</version>\n\n    <properties>\n        <maven.compiler.source>8</maven.compiler.source>\n        <maven.compiler.target>8</maven.compiler.target>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.apache.spark</groupId>\n            <artifactId>spark-core_2.12</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.spark</groupId>\n            <artifactId>spark-sql_2.12</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.spark</groupId>\n            <artifactId>spark-streaming_2.12</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.spark</groupId>\n            <artifactId>spark-yarn_2.12</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.spark</groupId>\n            <artifactId>spark-streaming-kafka-0-10_2.12</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n        <dependency>\n            <groupId>com.alibaba</groupId>\n            <artifactId>druid</artifactId>\n            <version>1.1.10</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-core</artifactId>\n            <version>2.10.1</version>\n        </dependency>\n        <dependency>\n            <groupId>com.esotericsoftware</groupId>\n            <artifactId>kryo</artifactId>\n            <version>5.0.3</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.spark</groupId>\n            <artifactId>spark-hive_2.12</artifactId>\n            <version>3.0.0</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.hive</groupId>\n            <artifactId>hive-exec</artifactId>\n            <version>2.3.9</version>\n        </dependency>\n        <dependency>\n            <groupId>mysql</groupId>\n            <artifactId>mysql-connector-java</artifactId>\n            <version>5.1.27</version>\n        </dependency>\n    </dependencies>\n    \n</project>\n
+===================================================================
+diff --git a/_05_spark/pom.xml b/_05_spark/pom.xml
+--- a/_05_spark/pom.xml	
++++ b/_05_spark/pom.xml	
+@@ -19,56 +19,7 @@
+             <artifactId>spark-core_2.12</artifactId>
+             <version>3.0.0</version>
+         </dependency>
+-        <dependency>
+-            <groupId>org.apache.spark</groupId>
+-            <artifactId>spark-sql_2.12</artifactId>
+-            <version>3.0.0</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.apache.spark</groupId>
+-            <artifactId>spark-streaming_2.12</artifactId>
+-            <version>3.0.0</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.apache.spark</groupId>
+-            <artifactId>spark-yarn_2.12</artifactId>
+-            <version>3.0.0</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.apache.spark</groupId>
+-            <artifactId>spark-streaming-kafka-0-10_2.12</artifactId>
+-            <version>3.0.0</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>com.alibaba</groupId>
+-            <artifactId>druid</artifactId>
+-            <version>1.1.10</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>com.fasterxml.jackson.core</groupId>
+-            <artifactId>jackson-core</artifactId>
+-            <version>2.10.1</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>com.esotericsoftware</groupId>
+-            <artifactId>kryo</artifactId>
+-            <version>5.0.3</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.apache.spark</groupId>
+-            <artifactId>spark-hive_2.12</artifactId>
+-            <version>3.0.0</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.apache.hive</groupId>
+-            <artifactId>hive-exec</artifactId>
+-            <version>2.3.9</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>mysql</groupId>
+-            <artifactId>mysql-connector-java</artifactId>
+-            <version>5.1.27</version>
+-        </dependency>
++
+     </dependencies>
+     
+ </project>
