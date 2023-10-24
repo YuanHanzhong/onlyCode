@@ -13,7 +13,6 @@ public class _7_获取一个四位数的个位十位百位千位 {
         int bai = a%1000/100;
         int shi = a%100/10;
         int ge = a%10;
-    
         System.out.println("qian = " + qian);
         System.out.println("bai = " + bai);
         System.out.println("shi = " + shi);
