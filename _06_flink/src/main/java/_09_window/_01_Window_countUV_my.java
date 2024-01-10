@@ -29,6 +29,7 @@ public class _01_Window_countUV_my {
         
         // 设计环境变量2+1
         
+        
         StreamExecutionEnvironment executionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment();
         executionEnvironment.setParallelism(1);
         
