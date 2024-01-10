@@ -34,6 +34,7 @@
         <module>_04_spark</module>
         <module>_04_sparkTest</module>
         <module>_04_scalaTest</module>
+        <module>_500_flink-prome2022_demo</module>
     </modules>
 
     <properties>
