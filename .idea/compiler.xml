@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="_04_scalaTest" />
         <module name="_13_designPattern" />
         <module name="_06_flink_wu" />
         <module name="_03_flume" />
@@ -15,22 +14,27 @@
         <module name="_200_flinkRealtime0106" />
         <module name="_07_redis" />
         <module name="_400_totalManual" />
-        <module name="_09_phoenix_thin" />
         <module name="_09_phonix_thick" />
         <module name="_11_Algorithm" />
         <module name="_04_sparkTest" />
         <module name="_04_spark" />
-        <module name="_10_es" />
         <module name="_01_javaEE" />
-        <module name="_06_flink_wu_my" />
-        <module name="_06_flink_my" />
         <module name="_06_flink_tuning" />
-        <module name="_300_eduRealtime" />
-        <module name="_02_hive" />
+        <module name="YarnDemo" />
         <module name="_06_flink" />
-        <module name="_02_hadoop" />
         <module name="_08_hbase" />
         <module name="_250_flinkRealtime_show" />
+        <module name="MapReduceDemo" />
+        <module name="_04_scalaTest" />
+        <module name="_09_phoenix_thin" />
+        <module name="_10_es" />
+        <module name="_06_flink_wu_my" />
+        <module name="HDFSClient" />
+        <module name="_06_flink_my" />
+        <module name="_500_flink-prome2022_demo" />
+        <module name="_300_eduRealtime" />
+        <module name="_02_hive" />
+        <module name="_02_hadoop" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -38,6 +42,7 @@
       <module name="_05_spark" target="1.8" />
       <module name="_06_flink_wu_m" target="8" />
       <module name="flink-tuning" target="1.8" />
+      <module name="YarnDemo (1)" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
