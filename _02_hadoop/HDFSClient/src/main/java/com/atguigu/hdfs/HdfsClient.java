@@ -27,7 +27,7 @@ public class HdfsClient {
 
     private FileSystem fs;
 
-    @Before
+    @Before // Before注解在每个测试方法运行钱都会运行。 好处：1. 解耦  2. 测试之间不互相影响
     public void init() throws URISyntaxException, IOException, InterruptedException {
         // 连接的集群nn地址
         URI uri = new URI("hdfs://hadoop102:8020");
@@ -72,7 +72,7 @@ public class HdfsClient {
     public void testPut2() throws IOException {
         FSDataOutputStream fos = fs.create(new Path("/input"));
 
-        fos.write("hello world".getBytes());
+        fos.write("hello jack".getBytes());
     }
 
     // 文件下载

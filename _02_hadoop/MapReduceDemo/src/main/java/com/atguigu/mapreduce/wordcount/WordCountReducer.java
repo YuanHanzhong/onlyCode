@@ -19,9 +19,11 @@ public class WordCountReducer extends Reducer<Text, IntWritable,Text,IntWritable
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
 
         int sum = 0;
-        // atguigu, (1,1)
-        // 累加
+        // a, (1,1)
+        // b, (1)
+        // 上面是如何变过去的?
         for (IntWritable value : values) {
+            // 累加
             sum += value.get();
         }
 
