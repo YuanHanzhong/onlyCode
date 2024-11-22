@@ -11,7 +11,7 @@ package com.atguigu.chapter06;
 import com.atguigu.chapter05.Event;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
-import org.apache.flink.api.common.functions.MapFunction;;
+import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
@@ -20,8 +20,6 @@ import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
 import java.time.Duration;
-
-
 
 public class WatermarkTest {
     public static void main(String[] args) throws Exception {
@@ -47,8 +45,7 @@ public class WatermarkTest {
                                     public long extractTimestamp(Event element, long recordTimestamp) {
                                         return element.timestamp;
                                     }
-                                })
-                )
+                                }))
                 // 根据user分组，开窗统计
                 .keyBy(data -> data.user)
                 .window(TumblingEventTimeWindows.of(Time.seconds(10)))
@@ -59,9 +56,10 @@ public class WatermarkTest {
     }
 
     // 自定义处理窗口函数，输出当前的水位线和窗口信息
-    public static class WatermarkTestResult extends ProcessWindowFunction<Event, String, String, TimeWindow>{
+    public static class WatermarkTestResult extends ProcessWindowFunction<Event, String, String, TimeWindow> {
         @Override
-        public void process(String s, Context context, Iterable<Event> elements, Collector<String> out) throws Exception {
+        public void process(String s, Context context, Iterable<Event> elements, Collector<String> out)
+                throws Exception {
             Long start = context.window().getStart();
             Long end = context.window().getEnd();
             Long currentWatermark = context.currentWatermark();
@@ -70,6 +68,3 @@ public class WatermarkTest {
         }
     }
 }
-
-
-

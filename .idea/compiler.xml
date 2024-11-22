@@ -18,6 +18,7 @@
         <module name="_11_Algorithm" />
         <module name="_04_sparkTest" />
         <module name="_04_spark" />
+        <module name="_06_flink_chen" />
         <module name="_01_javaEE" />
         <module name="_06_flink_tuning" />
         <module name="YarnDemo" />
