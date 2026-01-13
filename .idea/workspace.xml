@@ -5,10 +5,132 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="66f0e9b4-c26b-4054-85db-1af526563213" name="Default Changelist" comment="增加hadoopDemo">
-      <change afterPath="$PROJECT_DIR$/_06_flink_chen/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_06_flink_chen/src/main/java/org/MaoPao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_06_flink_chen/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/src/main/java/_01_基础语法/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/src/main/java/_01_基础语法/Array.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/src/main/java/_01_基础语法/shua.java" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/src/main/java/_01_基础语法/shua.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/src/main/java/_01_基础语法/键盘输入.java" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/src/main/java/_01_基础语法/键盘输入.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/Array.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/Array.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/OnlyCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/OnlyCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/ToDo.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/ToDo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/WordCount.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/WordCount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/shua.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/shua.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/键盘输入.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_01_基础语法/键盘输入.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_02_基础语法拓展/_7_获取一个四位数的个位十位百位千位.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_02_基础语法拓展/_7_获取一个四位数的个位十位百位千位.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第10题_押豹子.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第10题_押豹子.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第1题_输入个人信息.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第1题_输入个人信息.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第7题_彩票.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第7题_彩票.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第8题_解方程.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第8题_解方程.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第8题_解方程_老师的.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/上/第8题_解方程_老师的.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第1题_1_100偶数.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第1题_1_100偶数.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第2题_水仙花数.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第2题_水仙花数.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第3题_Foobizbaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第3题_Foobizbaz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第4题_接收2个正数.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第4题_接收2个正数.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第4题_接收2个正数_v2.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第4题_接收2个正数_v2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第5题_ATM.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第5题_ATM.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第6题_九九乘法表.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第6题_九九乘法表.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第7题_菱形.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第7题_菱形.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第7题_菱形_v2.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_03_流程控制/下/第7题_菱形_v2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/字母.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/字母.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/小组学员姓名.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/小组学员姓名.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/手机号码.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/手机号码.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/星期.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/星期.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/这一天是这一年的第几天_v1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/这一天是这一年的第几天_v1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/这一天是这一年的第几天_v2_switch.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/这一天是这一年的第几天_v2_switch.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/这一天是这一年的第几天_v3_数组实现.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本使用/这一天是这一年的第几天_v3_数组实现.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本算法/第6题_统计3的倍数的个数.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本算法/第6题_统计3的倍数的个数.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本算法/第7题_评委打分.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本算法/第7题_评委打分.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本算法/第8题_找出最高分同学的姓名.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/一维数组基本算法/第8题_找出最高分同学的姓名.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/二维数组/杨辉三角.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/二维数组/杨辉三角.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/二维数组/请使用二维数组存储如下数据并遍历显示.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_04_数组/二维数组/请使用二维数组存储如下数据并遍历显示.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/second/日期和员工类改造/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/second/日期和员工类改造/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/second/日期和员工类改造/MyDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/second/日期和员工类改造/MyDate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/second/日期和员工类改造/T.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/second/日期和员工类改造/T.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/Circle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/MyDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/MyDate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/Test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_05_面向对象基础上/第一次练习/Test1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/ArrayTools.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/ArrayTools.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/Riqi.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/Riqi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/Sanjiao.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/Sanjiao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/入口.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/入口.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/Computor.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/Computor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/Typec.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/Typec.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/USB.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_07_面向对象/接口/USB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Child.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Child.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Father.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Father.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Man.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Man.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Woman.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_2/Woman.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Designer.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Designer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Employee.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Programmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Programmer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_09_多态/_3/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_01_字符串/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_01_字符串/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_01_exe_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_01_exe_1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_02_TimestampToBeijing.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_02_TimestampToBeijing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_03_BeijingToTimestamp.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_03_BeijingToTimestamp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_04_SimpleDateFormate.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_04_SimpleDateFormate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_05_TimeZone.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_05_TimeZone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_06_Calendar.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_06_Calendar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_07_LocalDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_07_LocalDate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_08_ZoneId.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_08_ZoneId.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_09_ZoneDateTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_09_ZoneDateTime.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_10_Duration.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_10_Duration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_10_Period.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_10_Period.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_11_ChronoUnit_Birthday.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_11_ChronoUnit_Birthday.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_12_DateTimeFormatter.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_10_常用API/_03_Date/_12_DateTimeFormatter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/ChineseStudent.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/ChineseStudent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/Rec.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/Rec.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/_1_/Huiwen.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/_1_/Huiwen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/_1_/test$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/_1_/test$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/_1_/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/_1_/test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/testFanxing$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/testFanxing$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/testFanxing.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/testFanxing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/wildCard/_1_test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_12_泛型/wildCard/_1_test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/ReadFileToString.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/ReadFileToString.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitterTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitterTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds$State.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds$State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds$Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds$Token.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds$TokenKind.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds$TokenKind.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/SqlSplitter_ds.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/_01_产生随机单词.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_14_File类与IO流/_01_产生随机单词.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_16_反射/exercise/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_16_反射/exercise/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_16_反射/exercise/XuLieHua.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_16_反射/exercise/XuLieHua.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_16_反射/左右看/getClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_16_反射/左右看/getClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/pool/TestDruid$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/pool/TestDruid$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/pool/TestDruid.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/pool/TestDruid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem1.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem2.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem3.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem4.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem5.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem6.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/problem/Problem6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/Problems_my.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/Problems_my.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestDelete.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestDelete.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestInsert.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestInsert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestJdbc.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestJdbc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestSelect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestUpdate.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/TestUpdate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/testJDBC_my.class" beforeDir="false" afterPath="$PROJECT_DIR$/_01_javaEE/target/classes/_30_JDBC/test/testJDBC_my.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_02_hadoop/HDFSClient/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_02_hadoop/HDFSClient/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_02_hadoop/MapReduceDemo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_02_hadoop/MapReduceDemo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_02_hadoop/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_02_hadoop/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_02_hive/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_02_hive/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_04_spark/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_04_spark/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_06_flink/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_06_flink/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_06_flink_chen/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_06_flink_chen/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_06_flink_my/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_06_flink_my/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_07_redis/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_07_redis/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_11_Algorithm/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_11_Algorithm/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,19 +191,19 @@
       <MavenGeneralSettings>
         <option name="failureBehavior" value="FAST" />
         <option name="printErrorStackTraces" value="true" />
-        <option name="useMavenConfig" value="true" />
-        <option name="usePluginRegistry" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2DctV9fjtDI1qm6HNaL2CaBwsZa" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -97,12 +219,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Array.executor": "Run",
+    "JUnit.Problem2.test02.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "TODO_SCOPE": "Module '_02_hadoop'",
     "WebServerToolWindowFactoryState": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "D:/code/java/_02_hadoop/src/main/java",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/GitHub/onlyCode",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,8 +242,9 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "Code Search",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "spring.configuration.checksum": "53633ffbc7a86cbfc5d2ed73d5dd4f68",
+    "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -138,7 +270,7 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.MaoPao">
+  <component name="RunManager" selected="JUnit.Problem2.test02">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -146,6 +278,19 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Array" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="_01_基础语法.Array" />
+      <module name="_01_javaEE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_01_基础语法.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,32 +321,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WCDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.hanzhong.mrLocal.WCDriver" />
-      <module name="_02_hadoop" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.hanzhong.mrLocal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WordCountDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.atguigu.mapreduce.wordcount.WordCountDriver" />
-      <module name="MapReduceDemo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.atguigu.mapreduce.wordcount.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="bean.BeanDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bean.BeanDriver" />
       <module name="_02_hadoop" />
@@ -215,15 +334,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Problem2.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="_01_javaEE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="_30_JDBC.problem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="_30_JDBC.problem" />
+      <option name="MAIN_CLASS_NAME" value="_30_JDBC.problem.Problem2" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Problem2.test02" />
+        <item itemvalue="Application.Array" />
         <item itemvalue="Application.MaoPao" />
         <item itemvalue="Application.BeanDriver" />
         <item itemvalue="Application.bean.BeanDriver" />
-        <item itemvalue="Application.WordCountDriver" />
-        <item itemvalue="Application.WCDriver" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -291,6 +434,11 @@
       <workItem from="1723082353126" duration="1233000" />
       <workItem from="1731895901962" duration="718000" />
       <workItem from="1731896647507" duration="3816000" />
+      <workItem from="1768307483921" duration="335000" />
+      <workItem from="1768307870410" duration="641000" />
+      <workItem from="1768309316774" duration="555000" />
+      <workItem from="1768310056220" duration="499000" />
+      <workItem from="1768310575613" duration="1148000" />
     </task>
     <task id="LOCAL-00001" summary="from mac">
       <option name="closed" value="true" />

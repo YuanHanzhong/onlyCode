@@ -3,5 +3,6 @@
     "maven.executable.path": "C:\\app\\Java\\Maven\\apache-maven-3.2.5\\bin\\mvn",
     "java.configuration.maven.userSettings": "C:\\Users\\jack\\.m2\\settings.xml",
     "java.configuration.maven.globalSettings": "C:\\app\\Java\\Maven\\apache-maven-3.2.5\\conf\\settings.xml",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

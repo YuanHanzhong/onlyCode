@@ -11,7 +11,7 @@ public class shua {
         int i = 0;
         System.out.println("change(i) = " + change(i));
         System.out.println("change(i) = " + change(change(i)));
-        i = ++i;
+        ++i;
         System.out.println("i = " + i);
     }
     public static int change(int i){

@@ -6,8 +6,6 @@ package _01_基础语法;/*
  *      3 scanner.close()
  */
 
-import org.junit.Test;
-
 import java.util.Scanner;
 
 public class 键盘输入 {

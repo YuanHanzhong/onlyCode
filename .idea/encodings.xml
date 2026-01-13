@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/_01_javaEE/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_01_javaEE/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_02_hive/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_02_hive/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_04_spark/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_04_spark/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_06_flink_chen/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_06_flink_chen/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_06_flink_my/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_06_flink_my/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_06_flink_wu/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_06_flink_wu/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_06_flink_wu_my/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_06_flink_wu_my/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_07_redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_07_redis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_08_hbase/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_08_hbase/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_09_phoenix_thin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_09_phoenix_thin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_09_phonix_thick/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_09_phonix_thick/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_10_es/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_10_es/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_11_Algorithm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_11_Algorithm/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_13_designPattern/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_13_designPattern/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_200_flinkRealtime/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_200_flinkRealtime/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_200_flinkRealtime0106/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_200_flinkRealtime0106/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_250_flinkRealtime_show/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_250_flinkRealtime_show/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_300_eduRealtime/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_300_eduRealtime/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_400_totalManual/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_400_totalManual/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>
